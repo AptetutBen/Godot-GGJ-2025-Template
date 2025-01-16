@@ -47,13 +47,12 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Key Edit" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="Key Edit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Variable Key"
-scroll_fit_content_height = true
-scroll_fit_content_width = true
+expand_to_text_length = true
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -61,7 +60,6 @@ layout_mode = 2
 selected = 0
 item_count = 7
 popup/item_0/text = "Has Variable"
-popup/item_0/id = 0
 popup/item_1/text = "Is True"
 popup/item_1/id = 1
 popup/item_2/text = "Equals"
@@ -75,11 +73,12 @@ popup/item_5/id = 5
 popup/item_6/text = "Less Than or Equal"
 popup/item_6/id = 6
 
-[node name="Value Edit" type="TextEdit" parent="VBoxContainer"]
+[node name="Value Edit" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 37.79)
 layout_mode = 2
 placeholder_text = "Value	"
+expand_to_text_length = true
 
 [node name="True Label" type="Label" parent="."]
 layout_mode = 2

@@ -13,10 +13,10 @@ custom_minimum_size = Vector2(40.22, 0)
 layout_mode = 2
 text = "X"
 
-[node name="Option Text" type="TextEdit" parent="."]
+[node name="Option Text" type="LineEdit" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 37.62)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Value"
-wrap_mode = 1
+expand_to_text_length = true

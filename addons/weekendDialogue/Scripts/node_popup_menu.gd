@@ -1,4 +1,5 @@
-extends PopupMenu
+@tool
+class_name DeleteMenu extends PopupMenu
 
 signal click_button(id : int)
 

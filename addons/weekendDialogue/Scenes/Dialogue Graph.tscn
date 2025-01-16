@@ -1,14 +1,14 @@
 [gd_scene load_steps=14 format=3 uid="uid://b4i8gaa812i43"]
 
-[ext_resource type="Script" uid="uid://cfbos3jrtyhg2" path="res://addons/weekendDialogue/Scripts/weekendDialogueEditor.gd" id="1_hfyfc"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/weekendDialogueEditor.gd" id="1_hfyfc"]
 [ext_resource type="PackedScene" uid="uid://cufx4633uoge0" path="res://addons/weekendDialogue/Prefabs/conversation_node.tscn" id="2_ewb42"]
 [ext_resource type="PackedScene" uid="uid://degb4wkppnlpv" path="res://addons/weekendDialogue/Prefabs/start_node.tscn" id="5_5axue"]
 [ext_resource type="PackedScene" uid="uid://b55u1mq86cmfu" path="res://addons/weekendDialogue/Prefabs/get_variable_node.tscn" id="5_ewb42"]
 [ext_resource type="Resource" uid="uid://bf0l0ipvqec58" path="res://addons/weekendDialogue/settings.tres" id="6_janmk"]
 [ext_resource type="PackedScene" uid="uid://bp6ak451eog5l" path="res://addons/weekendDialogue/Prefabs/set_variable_node.tscn" id="6_s2syb"]
-[ext_resource type="Resource" uid="uid://coeeku6e5lpjh" path="res://Data/Dialogue/Test Dialogue.tres" id="7_4ce0u"]
 [ext_resource type="PackedScene" uid="uid://cr4v61ty3q5wg" path="res://addons/weekendDialogue/Prefabs/text_editor.tscn" id="7_uu681"]
-[ext_resource type="Script" uid="uid://xc0dwosyh0b5" path="res://addons/weekendDialogue/Scripts/node_popup_menu.gd" id="8_uu681"]
+[ext_resource type="Resource" uid="uid://crtmtk8jti3gq" path="res://addons/weekendDialogue/Examples/Example Dialogue.tres" id="8_nkwce"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/node_popup_menu.gd" id="8_uu681"]
 [ext_resource type="PackedScene" uid="uid://i0vfncqcp0lx" path="res://addons/weekendDialogue/Prefabs/compare_variable_node.tscn" id="9_aycla"]
 [ext_resource type="Theme" uid="uid://di2blioe5dqny" path="res://addons/weekendDialogue/Themes/NodeTheme.tres" id="10_hu7hx"]
 
@@ -52,7 +52,7 @@ dialogueSetVariableNodePrefab = ExtResource("6_s2syb")
 dialogueGetVariableNodePrefab = ExtResource("5_ewb42")
 dialogueCompareVariableNodePrefab = ExtResource("9_aycla")
 settings = ExtResource("6_janmk")
-dialogue_data = ExtResource("7_4ce0u")
+dialogue_data = ExtResource("8_nkwce")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -83,7 +83,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Size Panel" type="Panel" parent="VBoxContainer/Main Panel"]
-custom_minimum_size = Vector2(232.77, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Main Panel/Size Panel"]
@@ -111,7 +111,7 @@ layout_mode = 2
 [node name="File Name Label" type="Label" parent="VBoxContainer/Main Panel/Size Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Test Dialogue.tres"
+text = "Example Dialogue.tres"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/Main Panel/Size Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 visible = false
@@ -191,79 +191,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-connections = Array[Dictionary]([{
-"from_node": &"Get Variable Node_13",
-"from_port": 1,
-"keep_alive": false,
-"to_node": &"Dialogue Node_7",
-"to_port": 0
-}, {
-"from_node": &"Dialogue Node_7",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"Dialogue Node_8",
-"to_port": 0
-}, {
-"from_node": &"Dialogue Node_8",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"Set Variable Node_12",
-"to_port": 0
-}, {
-"from_node": &"Get Variable Node_13",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"Dialogue Node_16",
-"to_port": 0
-}, {
-"from_node": &"Dialogue Node_16",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"Dialogue Node_15",
-"to_port": 0
-}, {
-"from_node": &"Start Node_0",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"Compare Variable Node_17",
-"to_port": 0
-}, {
-"from_node": &"Compare Variable Node_17",
-"from_port": 1,
-"keep_alive": false,
-"to_node": &"Dialogue Node_18",
-"to_port": 0
-}, {
-"from_node": &"Dialogue Node_18",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"Set Variable Node_19",
-"to_port": 0
-}, {
-"from_node": &"Compare Variable Node_17",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"Dialogue Node_21",
-"to_port": 0
-}, {
-"from_node": &"Dialogue Node_21",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"Set Variable Node_20",
-"to_port": 0
-}, {
-"from_node": &"Compare Variable Node_17",
-"from_port": 2,
-"keep_alive": false,
-"to_node": &"Dialogue Node_22",
-"to_port": 0
-}, {
-"from_node": &"Dialogue Node_22",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"Set Variable Node_23",
-"to_port": 0
-}])
 
 [node name="Text Editor" parent="VBoxContainer/Main Panel/Dialogue Editor" instance=ExtResource("7_uu681")]
 unique_name_in_owner = true
@@ -279,15 +206,6 @@ theme_override_styles/titlebar = SubResource("StyleBoxFlat_1lmvo")
 position_offset = Vector2(241, 145)
 title = "WYSIWYG Text Editor"
 
-[node name="PopupMenu" type="PopupMenu" parent="."]
-unique_name_in_owner = true
-size = Vector2i(100, 30)
-hide_on_state_item_selection = true
-item_count = 1
-item_0/text = "Delete"
-item_0/id = 0
-script = ExtResource("8_uu681")
-
 [node name="FileDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
 title = "Open a File"
@@ -296,11 +214,12 @@ file_mode = 0
 filters = PackedStringArray("*.tres")
 
 [node name="Add Menu" type="PopupMenu" parent="."]
+unique_name_in_owner = true
+position = Vector2i(510, 300)
 size = Vector2i(190, 143)
 hide_on_state_item_selection = true
 item_count = 5
 item_0/text = "Start"
-item_0/id = 0
 item_1/text = "Conversation"
 item_1/id = 1
 item_2/text = "Get Variable"
@@ -310,6 +229,15 @@ item_3/id = 3
 item_4/text = "Set Variable"
 item_4/id = 4
 
+[node name="PopupMenu" type="PopupMenu" parent="."]
+unique_name_in_owner = true
+position = Vector2i(510, 300)
+size = Vector2i(100, 35)
+hide_on_state_item_selection = true
+item_count = 1
+item_0/text = "Delete"
+script = ExtResource("8_uu681")
+
 [connection signal="pressed" from="VBoxContainer/Header/Add Node" to="." method="_on_add_node_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/Save Button" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/Main Panel/Size Panel/MarginContainer/VBoxContainer/Open File Button" to="." method="_on_open_file"]
@@ -318,6 +246,6 @@ item_4/id = 4
 [connection signal="connection_to_empty" from="VBoxContainer/Main Panel/Dialogue Editor" to="." method="_on_dialogue_editor_connection_to_empty"]
 [connection signal="delete_nodes_request" from="VBoxContainer/Main Panel/Dialogue Editor" to="." method="_on_dialogue_editor_delete_nodes_request"]
 [connection signal="disconnection_request" from="VBoxContainer/Main Panel/Dialogue Editor" to="." method="_on_dialogue_editor_disconnection_request"]
+[connection signal="id_pressed" from="Add Menu" to="." method="_on_add_menu_id_pressed"]
 [connection signal="click_button" from="PopupMenu" to="." method="_on_add_menu_id_pressed"]
 [connection signal="id_pressed" from="PopupMenu" to="PopupMenu" method="_on_id_pressed"]
-[connection signal="id_pressed" from="Add Menu" to="." method="_on_add_menu_id_pressed"]

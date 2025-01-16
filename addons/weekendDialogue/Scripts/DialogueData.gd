@@ -12,7 +12,6 @@ func get_node_from_start(key : String) -> DialogueConversationNodeData:
 	printerr("Can't find start node id: %s" % [key])
 	return null
 
-
 func get_dialogue_node(id : int) -> DialogueConversationNodeData:
 	if id < 0:
 		return null

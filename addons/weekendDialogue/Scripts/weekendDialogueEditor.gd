@@ -14,9 +14,11 @@ static var Instance : WeekendDialogueEditor
 @onready var dialogue_editor: GraphEdit = %"Dialogue Editor"
 @onready var text_editor: DialogueTextEditor = %"Text Editor"
 
-@onready var popup_menu: PopupMenu = %PopupMenu
+@onready var popup_menu: DeleteMenu = %PopupMenu
+
 @onready var file_dialog: FileDialog = %FileDialog
-@onready var add_menu: PopupMenu = $"Add Menu"
+@onready var add_menu: PopupMenu = %"Add Menu"
+
 
 @onready var file_name_label: Label = %"File Name Label"
 
@@ -197,6 +199,14 @@ func _on_dialogue_editor_connection_request(from_node: StringName, from_port: in
 
 	var from_node_inst = get_dialogue_node(from_node)
 	var to_node_inst = get_dialogue_node(to_node)
+	
+	if from_node_inst == null:
+		printerr("From Node not found: %s"%from_node)
+		return
+	
+	if to_node_inst == null:
+		printerr("To Node not found: %s"%to_node)
+		return
 	
 	from_node_inst.on_connect("output", from_port, to_node_inst, to_port)
 	to_node_inst.on_connect("input", to_port, from_node_inst, from_port)

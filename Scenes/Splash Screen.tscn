@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b166u142w42h2"]
 
-[ext_resource type="Script" uid="uid://cpqqk1hrui4oo" path="res://Scripts/Splash Screen/SplashScreen.gd" id="1_msigr"]
+[ext_resource type="Script" path="res://Scripts/Splash Screen/SplashScreen.gd" id="1_msigr"]
 [ext_resource type="Texture2D" uid="uid://2thyd0qkj8v3" path="res://Sprites/Kenny Icons/star.png" id="2_c37q3"]
 [ext_resource type="Theme" uid="uid://c7vaw5wq61pbh" path="res://Themes/UI.tres" id="3_nnrbh"]
 

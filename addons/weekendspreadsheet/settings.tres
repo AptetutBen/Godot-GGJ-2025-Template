@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GoogleSheetSettings" load_steps=2 format=3 uid="uid://ccof7kkcyr3uc"]
 
-[ext_resource type="Script" path="res://addons/weekendspreadsheet/Scripts/GoogleSheetSettings.gd" id="1_o7v16"]
+[ext_resource type="Script" path="res://addons/weekendSpreadsheet/Scripts/GoogleSheetSettings.gd" id="1_o7v16"]
 
 [resource]
 script = ExtResource("1_o7v16")

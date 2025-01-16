@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="SpreadSheetData" load_steps=2 format=3 uid="uid://w4i0cpq0y08g"]
 
-[ext_resource type="Script" uid="uid://7wktfgttckqo" path="res://addons/weekendspreadsheet/Scripts/SpreadSheetData.gd" id="1_xrxty"]
+[ext_resource type="Script" path="res://addons/weekendSpreadsheet/Scripts/SpreadSheetData.gd" id="1_ospw3"]
 
 [resource]
-script = ExtResource("1_xrxty")
+script = ExtResource("1_ospw3")
 headers = ["ID", "Team", "Country", "NameF", "NameL", "Weight", "Height", "DOB", "Hometown", "Prov", "Pos", "Age", "HeightFt", "HtIn", "BMI", "", "", "", "", "", "", "", "", "", "", ""]
 rowsLookup = {
 "1": PackedStringArray("1", "Women", "Canada", "Meghan", "Agosta", "148", "5\'7", "12/2/1987", "Ruthven", "Ont.", "Forward", "36", "0.58", "7", "2123", "", "", "", "", "", "", "", "", "", "", ""),

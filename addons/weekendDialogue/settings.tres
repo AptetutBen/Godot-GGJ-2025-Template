@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_rg2a4")
-current_dialogue_data_path = "res://Data/Dialogue/Test Dialogue.tres"
+current_dialogue_data_path = "res://addons/weekendDialogue/Examples/Example Dialogue.tres"
 metadata/_custom_type_script = ExtResource("1_rg2a4")

@@ -4,7 +4,7 @@ class_name DialogueOptionUI extends Control
 signal delete_request
 
 @onready var delete_button: Button = %Delete_button
-@onready var option_text: TextEdit = %"Option Text"
+@onready var option_text: LineEdit = %"Option Text"
 
 var dialogue_option : DialogueOption
 

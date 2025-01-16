@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpreadSheetData" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://addons/weekendspreadsheet/Scripts/SpreadSheetData.gd" id="1_qjhr6"]
+[ext_resource type="Script" path="res://addons/weekendSpreadsheet/Scripts/SpreadSheetData.gd" id="1_qjhr6"]
 
 [resource]
 script = ExtResource("1_qjhr6")

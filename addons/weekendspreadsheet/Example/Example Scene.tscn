@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cck04pmachxsv"]
 
-[ext_resource type="Script" path="res://addons/weekendspreadsheet/Example/Scripts/Example Scene.gd" id="1_uryav"]
+[ext_resource type="Script" path="res://addons/weekendSpreadsheet/Example/Scripts/Example Scene.gd" id="1_uryav"]
 
 [node name="Example Scene" type="Control"]
 layout_mode = 3

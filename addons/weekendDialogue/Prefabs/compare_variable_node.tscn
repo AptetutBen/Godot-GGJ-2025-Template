@@ -34,13 +34,11 @@ slot/1/draw_stylebox = true
 script = ExtResource("1_hi3a7")
 option_prefab = ExtResource("2_hi3a7")
 
-[node name="Key Edit" type="TextEdit" parent="."]
+[node name="Key Edit" type="LineEdit" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Variable Key"
-scroll_fit_content_height = true
-scroll_fit_content_width = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

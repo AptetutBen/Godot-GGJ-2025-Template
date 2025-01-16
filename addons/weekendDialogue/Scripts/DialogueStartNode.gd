@@ -1,14 +1,14 @@
 @tool
 class_name DialogueStartNode extends DialogueNode
 
-@onready var start_key_text_edit: TextEdit = $"HBoxContainer/Start Key Text Edit"
+@onready var start_key_line_edit: LineEdit = %"Start Key LineEdit"
 
 var linking_node_id : String
 	
 func initiliase(data : DialogueNodeData):
 	await self.ready
 	dialogue_data = data
-	start_key_text_edit.text = data.start_key
+	start_key_line_edit.text = data.start_key
 	position_offset = dialogue_data.position
 	name= "Start Node_%s"%[dialogue_data.id]
 	title = name
@@ -25,7 +25,7 @@ func initilise_new(pos : Vector2, node_number : int):
 func save_node(connections : Array) -> void:
 	dialogue_data.position = position_offset
 	dialogue_data.id = id
-	dialogue_data.start_key = start_key_text_edit.text
+	dialogue_data.start_key = start_key_line_edit.text
 	
 	if connections.size() == 0:
 		dialogue_data.first_node_id  = -1

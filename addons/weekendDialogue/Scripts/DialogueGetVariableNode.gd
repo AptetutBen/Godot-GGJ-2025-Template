@@ -2,8 +2,8 @@
 class_name DialogueGetVariableNode extends DialogueNode 
 
 @onready var option_button: OptionButton = %OptionButton
-@onready var value_edit: TextEdit = %"Value Edit"
-@onready var key_edit: TextEdit = %"Key Edit"
+@onready var value_edit: LineEdit = %"Value Edit"
+@onready var key_edit: LineEdit = %"Key Edit"
 
 var number_only : bool 
 var regex_full = RegEx.new()

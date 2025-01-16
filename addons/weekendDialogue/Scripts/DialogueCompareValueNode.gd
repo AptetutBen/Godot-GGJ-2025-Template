@@ -3,7 +3,7 @@ class_name DialogueCompareVariableNode extends DialogueNode
 
 @export var option_prefab : PackedScene
 
-@onready var key_edit: TextEdit = %"Key Edit"
+@onready var key_edit: LineEdit = %"Key Edit"
 
 @export var options : Array[DialogueOptionUI]
 

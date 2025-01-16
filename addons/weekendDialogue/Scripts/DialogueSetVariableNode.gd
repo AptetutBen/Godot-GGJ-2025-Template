@@ -1,8 +1,8 @@
 @tool
 class_name DialogueSetVariableNode extends DialogueNode 
 
-@onready var key_edit: TextEdit = %"Key Edit"
-@onready var value_edit: TextEdit = %"Value Edit"
+@onready var key_edit: LineEdit = %"Key Edit"
+@onready var value_edit: LineEdit = %"Value Edit"
 @onready var variable_type_option: OptionButton = %"Variable Type Option"
 @onready var boolean_checkbox: CheckBox = %"Boolean Checkbox"
 

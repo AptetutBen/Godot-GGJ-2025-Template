@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bly3m32h1b0pn"]
 
-[ext_resource type="Script" path="res://addons/weekendspreadsheet/Scripts/GoogleSheetPage.gd" id="1_ya375"]
+[ext_resource type="Script" path="res://addons/weekendSpreadsheet/Scripts/GoogleSheetPage.gd" id="1_ya375"]
 
 [node name="Page" type="Control"]
 layout_mode = 3

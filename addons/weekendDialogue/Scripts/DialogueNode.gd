@@ -9,7 +9,7 @@ var dialogue_data : DialogueNodeData
 var id : int
 
 # port number, node id
-var output_ports_connected :Dictionary[int,int]
+var output_ports_connected = {}
 
 #var ports_connected = {
 	#"input": {},

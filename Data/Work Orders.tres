@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="SpreadSheetData" load_steps=2 format=3 uid="uid://bb4n4ocoqgjq1"]
 
-[ext_resource type="Script" uid="uid://7wktfgttckqo" path="res://addons/weekendspreadsheet/Scripts/SpreadSheetData.gd" id="1_r32mf"]
+[ext_resource type="Script" path="res://addons/weekendSpreadsheet/Scripts/SpreadSheetData.gd" id="1_vdwii"]
 
 [resource]
-script = ExtResource("1_r32mf")
+script = ExtResource("1_vdwii")
 headers = ["WO", "District", "LeadTech", "Service", "Rush", "ReqDate", "WorkDate", "Techs", "WtyLbr", "WtyParts", "LbrHrs", "PartsCost", "Payment", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 rowsLookup = {
 "A00100": PackedStringArray("A00100", "North", "Khan", "Assess", "", "01-Sep-20", "15-Sep-20", "2", "", "", "0.5", "360", "Account", "", "", "", "", "", "", "", "", "", "", "", "", ""),
