@@ -1,11 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx8r3mx8dhwju"]
+[gd_scene load_steps=3 format=3 uid="uid://cx8r3mx8dhwju"]
 
 [ext_resource type="Script" path="res://Scripts/Controllers/LoadingScreen.gd" id="1_0s034"]
-[ext_resource type="FontFile" uid="uid://y2fjskeskhyt" path="res://Fonts/Chewy-Regular.ttf" id="2_0s034"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_dhtv6"]
-font = ExtResource("2_0s034")
-font_size = 46
+[ext_resource type="Theme" uid="uid://c7vaw5wq61pbh" path="res://Themes/UI.tres" id="2_hh1c8"]
 
 [node name="Loading" type="Node"]
 script = ExtResource("1_0s034")
@@ -26,6 +22,6 @@ offset_left = 841.0
 offset_top = 560.0
 offset_right = 1125.0
 offset_bottom = 620.0
+theme = ExtResource("2_hh1c8")
 text = "Loading..."
-label_settings = SubResource("LabelSettings_dhtv6")
 horizontal_alignment = 2
