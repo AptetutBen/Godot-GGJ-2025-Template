@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://bly3m32h1b0pn"]
 
-[ext_resource type="Script" path="res://addons/weekendSpreadsheet/Scripts/GoogleSheetPage.gd" id="1_ya375"]
+[ext_resource type="Script" path="res://addons/weekendSpreadsheets/Scripts/GoogleSheetPage.gd" id="1_27y1f"]
 
 [node name="Page" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_ya375")
+script = ExtResource("1_27y1f")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
@@ -106,12 +106,10 @@ layout_mode = 2
 [node name="Error Text" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85098, 0.00784314, 0, 1)
-text = "Error message here"
 
 [node name="Success Text" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.2, 0.52549, 0.337255, 1)
-text = "Message here"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 17.68)
@@ -121,34 +119,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(2.08165e-12, 224.39)
 layout_mode = 2
 columns = 5
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(271.98, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "ID:1"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(271.98, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "ID:2"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(271.98, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "ID:3"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(271.98, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "ID:4"
-horizontal_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Fetch Button" to="." method="_on_fetch_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Open Sheet Button" to="." method="_on_open_sheet_button_pressed"]

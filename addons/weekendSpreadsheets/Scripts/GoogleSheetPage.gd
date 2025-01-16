@@ -8,7 +8,8 @@ var resourceName = "Sheet"
 
 var isFetching : bool = false
 
-@onready var sheetManager : GoogleSheetManager = get_parent().get_parent()
+var sheetManager : WeekendSheetManager
+
 @onready var fetchButton : Button = $"MarginContainer/VBoxContainer/HBoxContainer/Fetch Button"
 @onready var errorMessage : Label = $"MarginContainer/VBoxContainer/HFlowContainer/Error Text"
 @onready var processMessage : Label = $"MarginContainer/VBoxContainer/HFlowContainer/Success Text"
@@ -16,11 +17,12 @@ var isFetching : bool = false
 @onready var nameLabel : Label = $"MarginContainer/VBoxContainer/HBoxDetails/Data Name/Data Name Label"
 @onready var outputGridContainer : GridContainer = $MarginContainer/VBoxContainer/GridContainer
 
-func set_up(id : String,rName : String ):
+func set_up(id : String,rName : String, manager : WeekendSheetManager):
 	gid = id
 	resourceName = rName
 	gidLabel.text = id
 	nameLabel.text = rName
+	sheetManager = manager
 
 func _ready():
 	processMessage.text = ""

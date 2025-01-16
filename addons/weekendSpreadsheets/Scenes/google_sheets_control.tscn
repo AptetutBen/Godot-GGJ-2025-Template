@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://fqxleeur8mc2"]
 
-[ext_resource type="Script" path="res://addons/weekendSpreadsheet/Scripts/GoogleSheetManager.gd" id="1_54o33"]
+[ext_resource type="Script" path="res://addons/weekendSpreadsheets/Scripts/WeekendSheetManager.gd" id="1_mirps"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_54o33")
+script = ExtResource("1_mirps")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -18,9 +18,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+current_tab = 0
 
 [node name="Settings" type="Control" parent="TabContainer"]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings"]
 layout_mode = 0

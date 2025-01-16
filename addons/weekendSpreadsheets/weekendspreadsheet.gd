@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const editorAddon = preload("res://addons/weekendspreadsheet/Scenes/google_sheets_control.tscn")
+const editorAddon = preload("res://addons/weekendSpreadsheets/Scenes/google_sheets_control.tscn")
 
 var dockedScene
 

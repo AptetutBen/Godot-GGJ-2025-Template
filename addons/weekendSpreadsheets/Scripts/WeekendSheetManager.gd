@@ -1,12 +1,12 @@
 @tool
-class_name GoogleSheetManager
+class_name WeekendSheetManager
 extends Control
 
 var id: String = "0"
 var csvUrl = "https://docs.google.com/spreadsheets/d/{id}/gviz/tq?tqx=out:csv&gid={gid}"
-var googleSheetPrefab = load("res://addons/weekendspreadsheet/Scenes/page.tscn") as PackedScene
+var googleSheetPrefab = load("res://addons/weekendSpreadsheets/Scenes/page.tscn") as PackedScene
 var resourceFolder = "Data"
-var settingsLocation : String = "res://addons/weekendspreadsheet/settings.tres"
+var settingsLocation : String = "res://addons/weekendSpreadsheets/settings.tres"
 var settingsFile = load(settingsLocation) as GoogleSheetSettings
 var fetched_resourceName : String
 var pageLookup = {}
@@ -44,7 +44,7 @@ func _add_page(gid: String, page: String):
 	pageParent.add_child(newPage)
 	newPage.name = page
 	pageParent.current_tab = 0
-	newPage.set_up(gid,page)
+	newPage.set_up(gid,page,self)
 	pageLookup[gid] = newPage
 
 func on_remove_page(page : Control):
