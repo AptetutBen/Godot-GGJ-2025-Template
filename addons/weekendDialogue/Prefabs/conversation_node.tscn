@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cufx4633uoge0"]
 
-[ext_resource type="Script" uid="uid://bjnde1xvxtbm1" path="res://addons/weekendDialogue/Scripts/DialogueConversationNode.gd" id="1_tkl7i"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/DialogueConversationNode.gd" id="1_tkl7i"]
 [ext_resource type="Theme" uid="uid://di2blioe5dqny" path="res://addons/weekendDialogue/Themes/NodeTheme.tres" id="1_x7dxk"]
 [ext_resource type="PackedScene" uid="uid://da0digpeup2bd" path="res://addons/weekendDialogue/Prefabs/dialogue_option.tscn" id="2_ylejc"]
 

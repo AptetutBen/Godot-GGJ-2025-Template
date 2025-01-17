@@ -18,10 +18,11 @@ var speed_multiplyer : int = 1
 
 
 func _ready() -> void:
-	visible = false
-	EventBus.start_conversation.connect(_on_start_conversation)
-	EventBus.start_display_message.connect(_on_start_display_message)
-	EventBus.finish_conversation.connect(_on_finish_conversation)
+	pass
+	#visible = false
+	#EventBus.start_conversation.connect(_on_start_conversation)
+	#EventBus.start_display_message.connect(_on_start_display_message)
+	#EventBus.finish_conversation.connect(_on_finish_conversation)
 
 func display_conversation_text():
 	speaker_name.visible = true
