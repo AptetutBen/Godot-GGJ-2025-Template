@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ddngojvg5rlkb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5nr7"]
+bg_color = Color(0.118581, 0.118581, 0.118581, 1)
+draw_center = false
+border_width_top = 2
+border_color = Color(0.303233, 0.303233, 0.303233, 1)
+border_blend = true
+
+[resource]
+LineEdit/styles/normal = SubResource("StyleBoxFlat_u5nr7")
