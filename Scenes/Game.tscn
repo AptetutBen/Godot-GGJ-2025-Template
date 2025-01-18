@@ -35,7 +35,6 @@ script = ExtResource("1_gl6un")
 visible = false
 
 [node name="Command Terminal" type="Panel" parent="CanvasLayer"]
-visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 150.0
@@ -113,6 +112,7 @@ shortcut_keys_enabled = false
 
 [node name="SuggestedText" type="LineEdit" parent="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer/CommandEdit"]
 unique_name_in_owner = true
+modulate = Color(0.999075, 0.270899, 0.550666, 1)
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -124,9 +124,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 theme = ExtResource("6_a3k6m")
-theme_override_colors/font_color = Color(0.817519, 0.4385, 0.453756, 1)
 theme_override_fonts/font = ExtResource("5_8xidq")
-editable = false
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer"]
 custom_minimum_size = Vector2(27.55, 0)

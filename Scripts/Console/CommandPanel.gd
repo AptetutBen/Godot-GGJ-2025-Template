@@ -8,6 +8,7 @@ var input_split : PackedStringArray
 
 var command_history_list : Array[String]
 var suggested_command_index : int = 0
+var previous_command_index : int = 0
 
 @onready var command_edit: LineEdit = %CommandEdit
 @onready var suggested_text: LineEdit = %SuggestedText
@@ -69,43 +70,43 @@ func _input(event: InputEvent) -> void:
 			hide()
 		else:
 			show()
+			command_edit.text=""
+			suggested_text.text = ""
 			command_edit.grab_focus()
 			get_viewport().set_input_as_handled()
 
 func _edit_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_focus_next"):
+		accept_event()
+		if possible_commands.size() == 0:
+			return
+		
+		command_edit.text = possible_commands[suggested_command_index].command
+		
+		await get_tree().process_frame
+		command_edit.caret_column = -1
 
-	if event.is_action_pressed("Command_Up"):
-		print("up")
+	if event.is_action_pressed("ui_up"):
+		accept_event()
 		if possible_commands.size() <= 1:
 			return
 		
 		suggested_command_index-=1
 		if suggested_command_index < 0:
 			suggested_command_index = possible_commands.size()-1
+		await get_tree().process_frame
 		command_edit.caret_column = -1
-		
-		_update_suggested_command()
+	
+	if event.is_action_pressed("ui_down"):
 		accept_event()
-	elif event.is_action_pressed("Command_Down"):
-		print("down")
 		if possible_commands.size() <= 1:
 			return
 		
 		suggested_command_index = (suggested_command_index+1)%possible_commands.size()
 		_update_suggested_command()
-		command_edit.caret_column = -1
-		get_viewport().set_input_as_handled()
-		accept_event()
-	elif event.is_action_pressed("Command_Complete"):
-		print("select")
-		if possible_commands.size() == 0:
-			return
 		
-		command_edit.text = possible_commands[suggested_command_index].command
 		await get_tree().process_frame
 		command_edit.caret_column = -1
-		get_viewport().set_input_as_handled()
-		accept_event()
 			
 func _get_possible_commands(part : String) -> void:
 	possible_commands.clear()
@@ -138,6 +139,7 @@ func _run_command(command_array : PackedStringArray):
 			return
 	
 	add_output(" Command not found : %s"%command_array[0])
+	command_edit.caret_column = -1
 
 func clear_console() -> void:
 	output_label.text = ""
