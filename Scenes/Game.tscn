@@ -30,11 +30,13 @@ script = ExtResource("1_gl6un")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Conversation Controller" parent="CanvasLayer" instance=ExtResource("3_e0vue")]
+visible = false
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("2_j5yw3")]
 visible = false
 
 [node name="Command Terminal" type="Panel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 150.0
