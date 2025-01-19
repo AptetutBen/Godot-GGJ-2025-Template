@@ -2,7 +2,8 @@ class_name MenuText extends Control
 
 signal buttonAction
 signal highlight_button(menu_text : MenuText)
-#signal on_click(menu_text : MenuText)
+
+var button_group : TextButtonGroup
 
 var labelText : String
 
@@ -16,6 +17,9 @@ func _ready() -> void:
 	#gui_input.connect(_gui_input)
 
 func trigger_action():
+	if button_group && !button_group.active:
+		return
+	
 	buttonAction.emit()
 
 func select_button() -> void:

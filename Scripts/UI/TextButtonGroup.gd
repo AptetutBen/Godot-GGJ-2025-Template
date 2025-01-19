@@ -17,6 +17,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child is MenuText:
 			buttons.append(child)
+			child.button_group = self
 			child.highlight_button.connect(select_button)
 			if !found_first_button && child.visible:
 				child.select_button()

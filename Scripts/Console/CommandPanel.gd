@@ -143,3 +143,11 @@ func _run_command(command_array : PackedStringArray):
 
 func clear_console() -> void:
 	output_label.text = ""
+
+
+func _on_texture_rect_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		if event.button_mask == 1:
+			var delta : Vector2 = event.relative
+			size.y += delta.y
+			size.y = clamp(size.y,125,400)

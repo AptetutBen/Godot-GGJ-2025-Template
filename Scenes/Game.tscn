@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dhpowydkha7v1" path="res://addons/weekendDialogue/Examples/conversation_controller.tscn" id="3_e0vue"]
 [ext_resource type="Texture2D" uid="uid://de2ein1yl3mby" path="res://Sprites/Kenny Icons/joystick.png" id="3_j5yw3"]
 [ext_resource type="Script" path="res://Scripts/Console/CommandPanel.gd" id="4_ep717"]
-[ext_resource type="Texture2D" uid="uid://8bnfyxwqejc8" path="res://Sprites/Kenny Icons/down.png" id="5_02bxh"]
 [ext_resource type="FontFile" uid="uid://jbwcecxwdgqu" path="res://Fonts/RobotoMono.ttf" id="5_8xidq"]
 [ext_resource type="Theme" uid="uid://ddngojvg5rlkb" path="res://Themes/CommandWindow.tres" id="6_a3k6m"]
+[ext_resource type="Texture2D" uid="uid://d3t48kyvnql5p" path="res://Sprites/Kenny Icons/Drag Handle.png" id="7_jnc05"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2j71c"]
 font = ExtResource("5_8xidq")
@@ -37,7 +37,6 @@ visible = false
 visible = false
 
 [node name="Command Terminal" type="Panel" parent="CanvasLayer"]
-visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 150.0
@@ -84,21 +83,8 @@ theme_override_constants/margin_right = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Command Terminal/VBoxContainer/Text Entry"]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer"]
-custom_minimum_size = Vector2(16.5, 0)
+[node name="Label" type="Label" parent="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer"]
 layout_mode = 2
-color = Color(0.117647, 0.117647, 0.117647, 1)
-
-[node name="Label" type="Label" parent="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer/ColorRect"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -11.0
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 2
 text = ":"
 label_settings = SubResource("LabelSettings_bc385")
 horizontal_alignment = 2
@@ -129,10 +115,18 @@ mouse_filter = 2
 theme = ExtResource("6_a3k6m")
 theme_override_fonts/font = ExtResource("5_8xidq")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer/MarginContainer"]
+self_modulate = Color(0.409889, 0.22387, 0.270949, 1)
 custom_minimum_size = Vector2(27.55, 0)
 layout_mode = 2
-texture = ExtResource("5_02bxh")
+texture = ExtResource("7_jnc05")
 expand_mode = 1
 
 [node name="Sprite2D10" type="Sprite2D" parent="."]
@@ -214,3 +208,4 @@ texture = ExtResource("3_j5yw3")
 script = SubResource("GDScript_kldst")
 
 [connection signal="gui_input" from="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer/CommandEdit" to="CanvasLayer/Command Terminal" method="_edit_input"]
+[connection signal="gui_input" from="CanvasLayer/Command Terminal/VBoxContainer/Text Entry/HBoxContainer/MarginContainer/TextureRect" to="CanvasLayer/Command Terminal" method="_on_texture_rect_gui_input"]
