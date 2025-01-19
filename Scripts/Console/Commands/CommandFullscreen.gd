@@ -6,7 +6,7 @@ func get_command() -> String:
 func get_help() -> String:
 	return "Sets the game to windowed or fullscreen mode \n 'fullscreen' \n 'fullscreen true' \n 'fullscreen false'"
 
-func run_command(strings : PackedStringArray, panel : CommandPanel) -> String:
+func run_command(strings : PackedStringArray, _panel : CommandPanel) -> String:
 	if strings.size() == 1:
 		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 			return _set_windowed()

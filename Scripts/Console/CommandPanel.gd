@@ -117,9 +117,9 @@ func _get_possible_commands(part : String) -> void:
 	
 	possible_commands.sort()
 
-func get_command(name : String) -> ConsoleCommand:
+func get_command(command_name : String) -> ConsoleCommand:
 	for command in commands:
-		if command.command == name.to_lower():
+		if command.command == command_name.to_lower():
 			return command
 	
 	return null

@@ -1,11 +1,10 @@
 class_name MenuText extends Control
 
 signal buttonAction
-signal highlight_button(index : int)
-signal on_click(index : int)
+signal highlight_button(menu_text : MenuText)
+#signal on_click(menu_text : MenuText)
 
 var labelText : String
-var index : int
 
 @export var key : String # used for remote activation and deactivation of button
 
@@ -14,7 +13,7 @@ var index : int
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	gui_input.connect(_gui_input)
+	#gui_input.connect(_gui_input)
 
 func trigger_action():
 	buttonAction.emit()
@@ -27,10 +26,13 @@ func deselect_button() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton && MOUSE_BUTTON_LEFT && event.is_pressed():
-		on_click.emit(index)
+		_on_button_clicked()
 		
 func _on_mouse_entered() -> void:
-	highlight_button.emit(index)
+	highlight_button.emit(self)
 
 func _on_mouse_exited() -> void:
 	pass
+
+func _on_button_clicked() -> void:
+	trigger_action()

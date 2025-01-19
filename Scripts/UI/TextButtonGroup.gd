@@ -3,7 +3,7 @@ class_name TextButtonGroup extends Control
 signal close_action
 
 var buttons : Array[MenuText]
-var selectedButtonIndex : int = 0
+var current_selected_button : MenuText
 var can_navigate : bool = true
 
 @export var vertical : bool = true
@@ -12,79 +12,88 @@ var can_navigate : bool = true
 @export var open_on_right : bool = false
 
 func _ready() -> void:
+	var found_first_button : bool 
+	
 	for child in get_children():
 		if child is MenuText:
 			buttons.append(child)
+			child.highlight_button.connect(select_button)
+			if !found_first_button && child.visible:
+				child.select_button()
+				found_first_button = true
+				current_selected_button = child
+			else:
+				child.deselect_button()
 	
-	selectedButtonIndex = _get_first_visable_button_index()
-	select_button(selectedButtonIndex,false)
-	for i in buttons.size():
-		buttons[i].index = i 
-		buttons[i].highlight_button.connect(select_button)
-		buttons[i].on_click.connect(on_button_click)
-
-func _get_first_visable_button_index() -> int:
-	for i in buttons.size():
-		if buttons[i].visible:
-			return i
-	return 0
-
+	visibility_changed.connect(_on_visibility_changed)
+	
 func enable():
-	if !is_visible_in_tree():
-		_highlight_button(_get_first_visable_button_index())
-	show()
 	active = true
+	show()
 
-func disable(set_hide : bool = false):
-	if set_hide:
-		hide()
+func disable(hide_node : bool = true):
 	active = false
+	if hide_node:
+		hide()
+
+func _get_first_visable_button() -> MenuText:
+	for i in buttons.size():
+		if buttons[i].is_visible_in_tree():
+			return buttons[i]
+	return null
+
+func _on_visibility_changed():
+	if !is_visible_in_tree():
+		return
+		
+	var first_button = _get_first_visable_button()
+	if first_button == null:
+		return
+		
+	select_button(first_button,false)
 
 func _on_close():
 	close_action.emit()
 
-func _on_select():
-	buttons[selectedButtonIndex].trigger_action()
-
-func select_button(index : int, play_sound : bool = true):
+func select_button(selected_button : MenuText, play_sound : bool = true):
 	if !active:
 		return
-
+		
 	if play_sound:
 		AudioManager.play_sfx("click1")
-	_highlight_button(index)
-
-func _highlight_button(index : int):
-	selectedButtonIndex = index
-	for i in buttons.size():
-		if i == index:
-			buttons[i].select_button()
-		else:
-			buttons[i].deselect_button()
+		
+	if current_selected_button != null:
+		current_selected_button.deselect_button()
 	
-func on_button_click(button_index : int) -> void:
-	if !active:
-		return
-	AudioManager.play_sfx("click1")
-	buttons[button_index].buttonAction.emit()
-	active = false
+	current_selected_button = selected_button
+		
+	for button in buttons:
+		if button == selected_button:
+			button.select_button()
+		else:
+			button.deselect_button()
 
-func _find_next_active_button(current_index: int) -> int:
+func _find_next_active_button() -> MenuText:
+	var current_button_index : int = buttons.find(current_selected_button)
 	for i in (buttons.size() -1):
-		var button_to_check : int = (1 + current_index + i)%buttons.size()
+		var button_to_check : int = (1 + current_button_index + i)%buttons.size()
 		if buttons[button_to_check].is_visible_in_tree():
-			return button_to_check
-	return current_index
+			return buttons[button_to_check]
+	return null
 
-func _find_previous_active_button(current_index: int) -> int:
+func _find_previous_active_button() -> MenuText:
+	var current_button_index : int = buttons.find(current_selected_button)
 	for i in (buttons.size() -1):
-		var button_to_check : int = fposmod((current_index - 1 - i),buttons.size())
+		var button_to_check : int = fposmod((current_button_index - 1 - i),buttons.size())
 		if buttons[button_to_check].is_visible_in_tree():
-			return button_to_check
-	return current_index
+			return buttons[button_to_check]
+	return null
+
+func _on_select() -> void:
+	current_selected_button.trigger_action()
 
 func _input(event: InputEvent) -> void:
-	if !is_visible_in_tree() || !active :
+	if !is_visible_in_tree() || !active || current_selected_button == null:
 		return
 
 	if event.is_action_pressed("UI Cancel"):
@@ -112,9 +121,13 @@ func _input(event: InputEvent) -> void:
 		if !can_navigate:
 			return
 		AudioManager.play_sfx("click1")
-		buttons[selectedButtonIndex].deselect_button()
-		selectedButtonIndex = _find_previous_active_button(selectedButtonIndex)
-		select_button(selectedButtonIndex)
+		var next_button =  _find_previous_active_button()
+		
+		if next_button == null:
+			return
+			
+		select_button(next_button)
+		
 		can_navigate = false
 		await get_tree().create_timer(0.05).timeout
 		can_navigate = true
@@ -123,9 +136,13 @@ func _input(event: InputEvent) -> void:
 		if !can_navigate:
 			return
 		AudioManager.play_sfx("click1")
-		buttons[selectedButtonIndex].deselect_button()
-		selectedButtonIndex = _find_next_active_button(selectedButtonIndex)
-		select_button(selectedButtonIndex)
+		var next_button =  _find_next_active_button()
+		
+		if next_button == null:
+			return
+
+		select_button(next_button)
+		
 		can_navigate = false
 		await get_tree().create_timer(0.05).timeout
 		can_navigate = true

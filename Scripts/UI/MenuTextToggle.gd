@@ -8,7 +8,7 @@ signal button_toggle_action(is_on : bool)
 @onready var toggle_text: RichTextLabel = $"Toggle Text"
 
 func trigger_action():
-	button_toggle_action.emit(toggled)
+	button_toggle_action.emit(!toggled)
 
 func toggle(on : bool):
 	if on:

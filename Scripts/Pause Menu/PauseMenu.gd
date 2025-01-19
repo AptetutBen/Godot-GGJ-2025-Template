@@ -21,8 +21,8 @@ func _input(event: InputEvent) -> void:
 			_pause()
 			button_group.enable()
 			debug_group.disable()
-			debug_group.visible = false
-			button_group.select_button(0, false)
+			#debug_group.visible = false
+			#button_group.select_button(0, false)
 
 func _pause():
 	FlowController.pause_game(self)
@@ -43,7 +43,7 @@ func _on_resume_button_button_action() -> void:
 
 func _on_debug_menu_button_action() -> void:
 	debug_group.enable()
-	button_group.disable()
+	button_group.disable(false)
 	debug_group.visible = true
 
 # Debug Actions
