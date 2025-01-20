@@ -35,8 +35,12 @@ func _ready() -> void:
 	command_edit.text_submitted.connect(_on_text_submitted)
 	command_edit.text_changed.connect(_on_text_changed)
 	get_commands(builtin_command_path)
+	commands.sort_custom(custom_sort)
 	if additional_command_path != "":
 		get_commands(additional_command_path)
+
+func custom_sort(a : ConsoleCommand, b: ConsoleCommand):
+	return a.command < b.command
 
 func get_commands(path : String) -> void:
 	var dir = DirAccess.open(path)
@@ -195,7 +199,7 @@ func _run_command(command_array : PackedStringArray):
 func clear_console() -> void:
 	output_label.text = ""
 
-func get_font_size() -> int:
+func get_current_font_size() -> int:
 	return suggested_text.get_theme_font_size("font_size")
 	
 func reset_font_size() -> void:

@@ -46,6 +46,9 @@ func unpause_game() -> void:
 func load_main_menu():
 	load_scene("Main Menu")
 
+func reload_current_scene():
+	load_scene(currentScene.name)
+
 func load_scene(scene_name , use_loading_screen : bool = false):
 	
 	if is_currently_loading:
