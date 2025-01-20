@@ -13,11 +13,13 @@ func run_command(strings : PackedStringArray, panel : CommandPanel) -> String:
 		return default_error()
 	else:
 		if strings[1] == "reset":
-			SaveController.reset_save_data()
+			panel.reset_font_size()
 		else:
-			pass
+			if !(strings[1]).is_valid_int():
+				return "%s is not a valid int"%strings[1]
+			panel.set_font_size(int(strings[1]))
 
-		return("Data cleared")
+		return ""
 
 func default_error()-> String:
 	return "'fontsize' expects 1 argument. \n " + get_help()

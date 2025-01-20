@@ -1,16 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8wg4cuwctt0r"]
+[gd_scene load_steps=5 format=3 uid="uid://c8wg4cuwctt0r"]
 
 [ext_resource type="Script" path="res://addons/weekendCommandTerminal/Scripts/CommandPanel.gd" id="1_65041"]
 [ext_resource type="FontFile" uid="uid://jbwcecxwdgqu" path="res://Fonts/RobotoMono.ttf" id="2_w15k2"]
 [ext_resource type="Theme" uid="uid://ddngojvg5rlkb" path="res://Themes/CommandWindow.tres" id="3_bkk3c"]
 [ext_resource type="Texture2D" uid="uid://d3t48kyvnql5p" path="res://addons/weekendCommandTerminal/Sprites/Drag Handle.png" id="4_wnaq4"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_2j71c"]
-font = ExtResource("2_w15k2")
-font_size = 10
-
-[sub_resource type="LabelSettings" id="LabelSettings_bc385"]
-font = ExtResource("2_w15k2")
 
 [node name="Command Terminal" type="Control"]
 layout_mode = 3
@@ -56,9 +49,8 @@ theme_override_constants/margin_bottom = 0
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 2
-text = "asdfasdfasdfsdf"
-label_settings = SubResource("LabelSettings_2j71c")
+theme_override_fonts/font = ExtResource("2_w15k2")
+theme_override_font_sizes/font_size = 15
 vertical_alignment = 2
 
 [node name="Text Entry" type="MarginContainer" parent="Main Panel/VBoxContainer"]
@@ -69,10 +61,12 @@ theme_override_constants/margin_right = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="Main Panel/VBoxContainer/Text Entry"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main Panel/VBoxContainer/Text Entry/HBoxContainer"]
+[node name="Beginning_label" type="Label" parent="Main Panel/VBoxContainer/Text Entry/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_w15k2")
+theme_override_font_sizes/font_size = 12
 text = ":"
-label_settings = SubResource("LabelSettings_bc385")
 horizontal_alignment = 2
 
 [node name="CommandEdit" type="LineEdit" parent="Main Panel/VBoxContainer/Text Entry/HBoxContainer"]
@@ -82,7 +76,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("3_bkk3c")
 theme_override_fonts/font = ExtResource("2_w15k2")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 30
 context_menu_enabled = false
 shortcut_keys_enabled = false
 
@@ -101,18 +95,20 @@ size_flags_vertical = 0
 mouse_filter = 2
 theme = ExtResource("3_bkk3c")
 theme_override_fonts/font = ExtResource("2_w15k2")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 30
 
 [node name="MarginContainer" type="MarginContainer" parent="Main Panel/VBoxContainer/Text Entry/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 0
+theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 3
 
 [node name="TextureRect" type="TextureRect" parent="Main Panel/VBoxContainer/Text Entry/HBoxContainer/MarginContainer"]
 self_modulate = Color(0.409889, 0.22387, 0.270949, 1)
-custom_minimum_size = Vector2(14.21, 0)
+custom_minimum_size = Vector2(13, 12.59)
+layout_direction = 1
 layout_mode = 2
 texture = ExtResource("4_wnaq4")
 expand_mode = 1

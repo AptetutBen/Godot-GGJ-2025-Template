@@ -1,5 +1,9 @@
 class_name CommandPanel extends Control
 
+const default_font_size : int = 15
+const min_font_size : int = 7
+const max_font_size : int= 30
+
 var commands : Array[ConsoleCommand]
 
 var possible_commands : Array[ConsoleCommand]
@@ -10,8 +14,11 @@ var command_history_list : Array[String]
 var suggested_command_index : int = 0
 var previous_command_index : int = 0
 
+@onready var settings : TerminalSettings = preload("res://addons/weekendCommandTerminal/Data/settings.tres")
+
 @onready var command_edit: LineEdit = %CommandEdit
 @onready var suggested_text: LineEdit = %SuggestedText
+@onready var beginning_label: Label = %Beginning_label
 
 @onready var output_label: Label = %"Output Label"
 @onready var scroll_container: ScrollContainer = %ScrollContainer
@@ -23,6 +30,7 @@ var previous_command_index : int = 0
 
 func _ready() -> void:
 	hide()
+	set_font_size(settings.font_size)
 	output_label.text = " - weekend Terminal - \n "
 	command_edit.text_submitted.connect(_on_text_submitted)
 	command_edit.text_changed.connect(_on_text_changed)
@@ -187,13 +195,24 @@ func _run_command(command_array : PackedStringArray):
 func clear_console() -> void:
 	output_label.text = ""
 
+func get_font_size() -> int:
+	return suggested_text.get_theme_font_size("font_size")
+	
+func reset_font_size() -> void:
+	set_font_size(default_font_size)
+	
 func set_font_size(font_size : int):
-	var font : Font = suggested_text.get_theme_font("string_name", "")
-	font.size = font_size
-	font = command_edit.get_theme_font("string_name", "")
-	font.size = font_size
-	font = output_label.get_theme_font("string_name", "")
-	font.size = font_size
+	if font_size < min_font_size || font_size > max_font_size:
+		add_output("Font size '%s' must be between %s and %s"%[font_size,min_font_size,max_font_size])
+		return
+	suggested_text.add_theme_font_size_override("font_size", font_size)
+	command_edit.add_theme_font_size_override("font_size", font_size)
+	output_label.add_theme_font_size_override("font_size", font_size)
+	beginning_label.add_theme_font_size_override("font_size", font_size)
+	
+	add_output("Font size changed to %s"%font_size)
+	settings.font_size = font_size
+	ResourceSaver.save(settings)
 
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -201,7 +220,3 @@ func _on_texture_rect_gui_input(event: InputEvent) -> void:
 			var delta : Vector2 = event.relative
 			main_panel.size.y += delta.y
 			main_panel.size.y = clamp(main_panel.size.y,125,400)
-
-func get_font_size() -> int:
-	#return command_edit.get_theme_font(0).get_string_size()
-	return 1

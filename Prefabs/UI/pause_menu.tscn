@@ -33,6 +33,7 @@ region = Rect2(745.641, 419.091, 154.126, 77.0629)
 
 [node name="Pause Menu" type="Control"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
