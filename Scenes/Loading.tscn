@@ -17,11 +17,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 841.0
 offset_top = 560.0
-offset_right = 1125.0
-offset_bottom = 620.0
+offset_right = 1095.0
+offset_bottom = 629.0
 theme = ExtResource("2_hh1c8")
-text = "Loading..."
-horizontal_alignment = 2
+bbcode_enabled = true
+text = "[right][wave amp=70	.0 freq=3	.0 connected=1]Loading...[/wave][/right]"

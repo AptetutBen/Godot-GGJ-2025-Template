@@ -16,7 +16,7 @@ func _ready():
 	var root = get_tree().root
 	currentScene = root.get_child(root.get_child_count() - 1)
 	
-	dir_contents("res://")
+	dir_contents("res://Scenes")
 	
 	SaveController._load_settings_data()
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if SaveController.get_is_fullscreen() else DisplayServer.WINDOW_MODE_WINDOWED)
