@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://di0ixdytwx1hv"]
+[gd_scene load_steps=14 format=3 uid="uid://di0ixdytwx1hv"]
 
 [ext_resource type="Script" path="res://Scripts/Main Menu/MainMenuController.gd" id="1_6svde"]
 [ext_resource type="Theme" uid="uid://c7vaw5wq61pbh" path="res://Themes/UI.tres" id="2_0126h"]
 [ext_resource type="Texture2D" uid="uid://r50oq5df1ugk" path="res://Sprites/UI/UI Panels.png" id="4_4lp62"]
 [ext_resource type="Script" path="res://Scripts/UI/TextButtonGroup.gd" id="4_88j2r"]
 [ext_resource type="Script" path="res://Scripts/UI/MenuText.gd" id="5_j2368"]
+[ext_resource type="Script" path="res://Scripts/UI/MenuTextRange.gd" id="6_8dboa"]
 [ext_resource type="Script" path="res://Scripts/UI/MenuTextToggle.gd" id="7_4lp62"]
 [ext_resource type="Script" path="res://Scripts/UI/CreditsPanel.gd" id="10_wib81"]
 
@@ -15,6 +16,10 @@ region = Rect2(749.35, 500.675, 140.8, 68.2)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0126h"]
 atlas = ExtResource("4_4lp62")
 region = Rect2(746.7, 424.2, 149.6, 72.6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4glhd"]
+atlas = ExtResource("4_4lp62")
+region = Rect2(917.375, 271.373, 245.569, 96.4975)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4lp62"]
 atlas = ExtResource("4_4lp62")
@@ -187,7 +192,6 @@ autowrap_mode = 0
 
 [node name="Options Buttons" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -202,20 +206,19 @@ script = ExtResource("4_88j2r")
 close_on_left = true
 metadata/_edit_group_ = true
 
-[node name="Audio Volume" type="RichTextLabel" parent="Options Buttons"]
+[node name="Game Volume" type="RichTextLabel" parent="Options Buttons"]
 unique_name_in_owner = true
-visible = false
 clip_contents = false
 custom_minimum_size = Vector2(0, 64.9)
 layout_mode = 2
 theme = ExtResource("2_0126h")
 bbcode_enabled = true
-text = "Volume"
+text = "Game Volume"
 scroll_active = false
 autowrap_mode = 0
-script = ExtResource("5_j2368")
+script = ExtResource("6_8dboa")
 
-[node name="Toggle Text" type="RichTextLabel" parent="Options Buttons/Audio Volume"]
+[node name="Range Text" type="RichTextLabel" parent="Options Buttons/Game Volume"]
 clip_contents = false
 custom_minimum_size = Vector2(0, 64.9)
 layout_mode = 2
@@ -229,16 +232,55 @@ text = "10%"
 scroll_active = false
 autowrap_mode = 0
 
-[node name="TextureRect" type="TextureRect" parent="Options Buttons/Audio Volume"]
+[node name="TextureRect" type="TextureRect" parent="Options Buttons/Game Volume"]
 self_modulate = Color(0.278532, 0.0895237, 0.177514, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(0, 67.7)
 layout_mode = 0
-offset_left = -23.0
-offset_top = -8.0
-offset_right = 166.0
-offset_bottom = 67.0
-texture = SubResource("AtlasTexture_4lp62")
+offset_left = -26.0
+offset_top = -5.0
+offset_right = 280.0
+offset_bottom = 68.0
+texture = SubResource("AtlasTexture_4glhd")
+expand_mode = 1
+flip_h = true
+
+[node name="Music Volume" type="RichTextLabel" parent="Options Buttons"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(0, 64.9)
+layout_mode = 2
+theme = ExtResource("2_0126h")
+bbcode_enabled = true
+text = "Music Volume"
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("6_8dboa")
+
+[node name="Range Text" type="RichTextLabel" parent="Options Buttons/Music Volume"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 64.9)
+layout_mode = 2
+offset_left = 293.563
+offset_top = -1.0
+offset_right = 449.563
+offset_bottom = 63.9
+theme = ExtResource("2_0126h")
+bbcode_enabled = true
+text = "10%"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Options Buttons/Music Volume"]
+self_modulate = Color(0.278532, 0.0895237, 0.177514, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(0, 67.7)
+layout_mode = 0
+offset_left = -20.0
+offset_top = -4.0
+offset_right = 279.0
+offset_bottom = 68.0
+texture = SubResource("AtlasTexture_4glhd")
 expand_mode = 1
 
 [node name="Fullscreen Button" type="RichTextLabel" parent="Options Buttons"]
@@ -342,6 +384,7 @@ texture = SubResource("AtlasTexture_0vewo")
 
 [node name="Credits" type="TextureRect" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -429,7 +472,8 @@ vertical_alignment = 2
 [connection signal="buttonAction" from="Main Buttons/Credits Button" to="." method="_on_credits_button_pressed"]
 [connection signal="buttonAction" from="Main Buttons/Exit Button" to="." method="_on_exit_button_pressed"]
 [connection signal="close_action" from="Options Buttons" to="." method="_on_back_button_button_action"]
-[connection signal="buttonAction" from="Options Buttons/Audio Volume" to="Options Buttons/Audio Volume" method="trigger_action"]
+[connection signal="buttonAction" from="Options Buttons/Game Volume" to="." method="_on_master_volume_click"]
+[connection signal="buttonAction" from="Options Buttons/Music Volume" to="." method="_on_music_volume_click"]
 [connection signal="button_toggle_action" from="Options Buttons/Fullscreen Button" to="." method="_fullscreen_toggled"]
 [connection signal="button_toggle_action" from="Options Buttons/Vsync Toggle" to="." method="_vsync_toggled"]
 [connection signal="buttonAction" from="Options Buttons/Back Button" to="Options Buttons" method="_on_close"]

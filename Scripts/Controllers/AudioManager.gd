@@ -33,7 +33,10 @@ func _init():
 	_create_3DaudioSources(5)
 	_create_musicAudioSources(2)
 	
-	_load_audio_settings()
+	AudioServer.set_bus_volume_db(0,linear_to_db(SaveController.get_master_volume()))
+	AudioServer.set_bus_volume_db(1,linear_to_db(SaveController.get_sfx_volume()))
+	AudioServer.set_bus_volume_db(2,linear_to_db(SaveController.get_music_volume()))
+	
 	
 # Add a new bus to the Audio Server
 func _add_bus(bus_name : String):
@@ -213,54 +216,24 @@ func _get_audio_files(path,dic):
 				
 		filename = dir.get_next()
 
-var sfxVolumeLevel : float
-var musicVolumeLevel : float
-var masterVolumeLevel : float
-
 func get_master_volume() -> float:
-	return masterVolumeLevel
+	return SaveController.get_master_volume()
 	
 func get_sfx_volume() -> float:
-	return sfxVolumeLevel
+	return SaveController.get_sfx_volume()
 	
 func get_music_volume() -> float:
-	return musicVolumeLevel
+	return SaveController.get_music_volume()
 
 func set_master_volume(value : float):
-	masterVolumeLevel = value
+	SaveController.set_master_volume(value)
 	AudioServer.set_bus_volume_db(0,linear_to_db(value))
 
 func set_sfx_volume(value : float):
-	sfxVolumeLevel = value
+	SaveController.set_sfx_volume(value)
 	AudioServer.set_bus_volume_db(1,linear_to_db(value))
 
-func set_music_volume(value : float):
-	musicVolumeLevel = value
+func set_music_volume(value : float, doSave : bool = true):
+	SaveController.set_music_volume(value)
 	AudioServer.set_bus_volume_db(2,linear_to_db(value))
-
-func save_audio_settings():
-	var data = {
-		"master_volume": masterVolumeLevel,
-		"sfx_volume" : sfxVolumeLevel,
-		"music_volume" : musicVolumeLevel
-	}
 	
-	var json_string = JSON.stringify(data)
-	var save_file = FileAccess.open("user://audio_settings.save", FileAccess.WRITE)
-	save_file.store_line(json_string)
-	save_file.close()
-
-func _load_audio_settings():
-	var save_file : FileAccess = FileAccess.open("user://audio_settings.save", FileAccess.READ)
-	
-	if save_file == null:
-		print("No audio save file, loading default values")
-		set_master_volume(1)
-		set_sfx_volume(1)
-		set_music_volume(1)
-		return
-
-	var parse_result = JSON.parse_string(save_file.get_as_text())
-	masterVolumeLevel = parse_result["master_volume"]
-	sfxVolumeLevel = parse_result["sfx_volume"]
-	musicVolumeLevel = parse_result["music_volume"]

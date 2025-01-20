@@ -16,5 +16,5 @@ func _ready() -> void:
 		_use_debug = false
 	
 	# play the background music,
-	if !_use_debug && !_debug_mute_music:
+	if _use_debug && !_debug_mute_music:
 		AudioManager.play_music("Game Music")

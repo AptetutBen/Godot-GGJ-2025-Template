@@ -6,12 +6,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smb0f"]
 shader = ExtResource("2_skybv")
-shader_parameter/bottom_color = Color(0.170094, 6.46757e-08, 3.30899e-08, 1)
-shader_parameter/top_color = Color(0.210507, 0.210507, 0.210507, 1)
-shader_parameter/wave_amp = 0.261
-shader_parameter/wave_size = 2.772
+shader_parameter/bottom_color = Color(0.136362, 6.994e-08, 1.8049e-08, 1)
+shader_parameter/top_color = Color(0.237539, 0.237539, 0.237539, 1)
+shader_parameter/wave_amp = 0.119
+shader_parameter/wave_size = 3.042
 shader_parameter/wave_time_mul = 0.21
-shader_parameter/total_phases = 12
+shader_parameter/total_phases = 11
 
 [node name="Loading" type="Node"]
 script = ExtResource("1_0s034")
@@ -34,7 +34,7 @@ offset_top = 560.0
 offset_right = 1095.0
 offset_bottom = 629.0
 theme = ExtResource("2_hh1c8")
-theme_override_colors/default_color = Color(0.768874, 0.693337, 0.744899, 1)
+theme_override_colors/default_color = Color(0.83168, 0.772691, 0.812686, 1)
 theme_override_colors/font_shadow_color = Color(0.211765, 0.211765, 0.211765, 1)
 theme_override_constants/shadow_offset_y = 5
 theme_override_constants/shadow_offset_x = 5

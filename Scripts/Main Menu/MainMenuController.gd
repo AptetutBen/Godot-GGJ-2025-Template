@@ -9,14 +9,20 @@ extends Control
 @onready var fullscreen_button: MenuTextToggle = %"Fullscreen Button"
 @onready var vsync_toggle: MenuTextToggle = %"Vsync Toggle"
 
+@onready var music_volume: MenuTextRange = %"Music Volume"
+@onready var game_volume: MenuTextRange = %"Game Volume"
+
+
 func _ready():
-	AudioManager.play_music("Main Menu Music")
+	AudioManager.play_music("Menu Music")
 	credits.hide()
 	options_buttons.hide()
 	main_buttons.show()
 	version_label.text = "v " + ProjectSettings.get_setting("application/config/version")
 	fullscreen_button.visibility_changed.connect(_fullscreen_visibility_changed)
 	vsync_toggle.visibility_changed.connect(_vsync_visibility_changed)
+	music_volume.update_value(AudioManager.get_music_volume())
+	game_volume.update_value(AudioManager.get_master_volume())
 
 func _on_start_button_pressed():
 	FlowController.start_game()
@@ -40,6 +46,26 @@ func _on_options_button_pressed():
 	AudioManager.play_sfx("click1")
 	options_buttons.enable()
 	main_buttons.disable(false)
+
+func _on_master_volume_click() -> void:
+	var current_volume :float = AudioManager.get_master_volume()
+	current_volume = current_volume + 0.1
+	
+	if current_volume > 1:
+		current_volume = 0
+	
+	AudioManager.set_master_volume(current_volume)
+	game_volume.update_value(current_volume)
+
+func _on_music_volume_click() -> void:
+	var current_volume :float = AudioManager.get_music_volume()
+	current_volume = current_volume + 0.1
+	
+	if current_volume > 1:
+		current_volume = 0
+	
+	AudioManager.set_music_volume(current_volume)
+	music_volume.update_value(current_volume)
 
 func _on_back_button_button_action() -> void:
 	AudioManager.play_sfx("click1")

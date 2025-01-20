@@ -12,6 +12,7 @@ var ethereal_dictionary = {}
 # Init
 func _init():
 	_load_data()
+	_load_settings_data()
 	
 func _ready() -> void:
 	get_tree().get_root().size_changed.connect(_set_window_size)
@@ -103,8 +104,37 @@ func is_etheral_value(key : String, value) -> bool:
 var game_settings_save_data = {
 	"vsync" : "true",
 	"fullscreen" : "false",
-	"window_size" : "Vector2i(1920,1080)"
+	"window_size" : "Vector2i(1920,1080)",
+	"master_volume": 1,
+	"sfx_volume" : 1,
+	"music_volume" : 1,
 }
+
+# Audio
+
+func get_master_volume() -> float:
+	return game_settings_save_data["master_volume"]
+
+func set_master_volume(value : float, do_save: bool = true) -> void:
+	game_settings_save_data["master_volume"] = value
+	if do_save:
+		_save_settings_data()
+		
+func get_music_volume() -> float:
+	return game_settings_save_data["music_volume"]
+
+func set_music_volume(value : float, do_save: bool = true) -> void:
+	game_settings_save_data["music_volume"] = value
+	if do_save:
+		_save_settings_data()
+
+func get_sfx_volume() -> float:
+	return game_settings_save_data["sfx_volume"]
+
+func set_sfx_volume(value : float, do_save: bool = true) -> void:
+	game_settings_save_data["sfx_volume"] = value
+	if do_save:
+		_save_settings_data()
 
 func get_is_vsync() -> bool:
 	return str_to_var(game_settings_save_data["vsync"])
