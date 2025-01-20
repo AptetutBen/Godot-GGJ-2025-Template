@@ -27,7 +27,6 @@ visible = false
 [node name="Command Terminal" parent="CanvasLayer" instance=ExtResource("4_2skhc")]
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("2_j5yw3")]
-visible = false
 
 [node name="Sprite2D10" type="Sprite2D" parent="."]
 modulate = Color(1, 0.700661, 0.765894, 1)

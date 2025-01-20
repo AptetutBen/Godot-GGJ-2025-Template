@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx8r3mx8dhwju"]
+[gd_scene load_steps=5 format=3 uid="uid://cx8r3mx8dhwju"]
 
 [ext_resource type="Script" path="res://Scripts/Controllers/LoadingScreen.gd" id="1_0s034"]
 [ext_resource type="Theme" uid="uid://c7vaw5wq61pbh" path="res://Themes/UI.tres" id="2_hh1c8"]
+[ext_resource type="Shader" path="res://Shaders/waves.gdshader" id="2_skybv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smb0f"]
+shader = ExtResource("2_skybv")
+shader_parameter/bottom_color = Color(0.170094, 6.46757e-08, 3.30899e-08, 1)
+shader_parameter/top_color = Color(0.210507, 0.210507, 0.210507, 1)
+shader_parameter/wave_amp = 0.261
+shader_parameter/wave_size = 2.772
+shader_parameter/wave_time_mul = 0.21
+shader_parameter/total_phases = 12
 
 [node name="Loading" type="Node"]
 script = ExtResource("1_0s034")
@@ -10,6 +20,7 @@ script = ExtResource("1_0s034")
 layer = 4
 
 [node name="Background" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_smb0f")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,5 +34,9 @@ offset_top = 560.0
 offset_right = 1095.0
 offset_bottom = 629.0
 theme = ExtResource("2_hh1c8")
+theme_override_colors/default_color = Color(0.768874, 0.693337, 0.744899, 1)
+theme_override_colors/font_shadow_color = Color(0.211765, 0.211765, 0.211765, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_offset_x = 5
 bbcode_enabled = true
 text = "[right][wave amp=70	.0 freq=3	.0 connected=1]Loading...[/wave][/right]"
