@@ -16,15 +16,32 @@ var previous_command_index : int = 0
 @onready var output_label: Label = %"Output Label"
 @onready var scroll_container: ScrollContainer = %ScrollContainer
 
+@onready var main_panel: Panel = %"Main Panel"
+
+@export var builtin_command_path : String = "res://addons/weekendCommandTerminal/Scripts/Commands"
+@export var additional_command_path : String
+
 func _ready() -> void:
 	hide()
+	output_label.text = " - weekend Terminal - \n "
 	command_edit.text_submitted.connect(_on_text_submitted)
 	command_edit.text_changed.connect(_on_text_changed)
-	
-	commands.append(CommandHelp.new())
-	commands.append(CommandQuit.new())
-	commands.append(CommandFullScreen.new())
-	commands.append(CommandClear.new())
+	get_commands(builtin_command_path)
+	if additional_command_path != "":
+		get_commands(additional_command_path)
+
+func get_commands(path : String) -> void:
+	var dir = DirAccess.open(path)
+	dir.list_dir_begin()
+	var filename = dir.get_next()
+	while filename != '':
+		if dir.current_is_dir():
+			get_commands(path + "/" + filename)
+		if filename.get_extension() == "gd":
+			var class_object = load(dir.get_current_dir() + "/" + filename)
+			if class_object and class_object.new() is ConsoleCommand:
+				commands.append(class_object.new())
+		filename = dir.get_next()
 
 func add_output(string : String):
 	if string == "":
@@ -45,6 +62,7 @@ func _on_text_submitted(text : String):
 func _on_text_changed(text : String):
 	if text.length() == 0:
 		suggested_text.text = ""
+		possible_commands.clear()
 		return
 	
 	input_split = text.split(" ")
@@ -67,13 +85,37 @@ func _update_suggested_command():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Command_Show"):
 		if visible:
-			hide()
+			if show_hide_tween == null:
+				hide_with_tween()
+				accept_event()
 		else:
-			show()
+			show_with_tween()
 			command_edit.text=""
 			suggested_text.text = ""
 			command_edit.grab_focus()
 			get_viewport().set_input_as_handled()
+
+var show_hide_tween : Tween
+
+func show_with_tween() -> void:
+	if show_hide_tween != null:
+		show_hide_tween.stop()
+	
+	show()
+	main_panel.position.y = -main_panel.size.y
+	show_hide_tween = get_tree().create_tween()
+	show_hide_tween.tween_property(main_panel,"position:y",0,0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	show_hide_tween.tween_callback(func(): show_hide_tween = null)
+	
+func hide_with_tween() -> void:
+	if show_hide_tween != null:
+		show_hide_tween.stop()
+	
+	show_hide_tween = get_tree().create_tween()
+	show_hide_tween.tween_property(main_panel,"position:y",-main_panel.size.y,0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+	show_hide_tween.tween_callback(func(): hide())
+	show_hide_tween.tween_callback(func(): show_hide_tween = null)
+	
 
 func _edit_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_focus_next"):
@@ -82,9 +124,8 @@ func _edit_input(event: InputEvent) -> void:
 			return
 		
 		command_edit.text = possible_commands[suggested_command_index].command
-		
-		await get_tree().process_frame
-		command_edit.caret_column = -1
+
+		command_edit.caret_column = 100000
 
 	if event.is_action_pressed("ui_up"):
 		accept_event()
@@ -136,18 +177,31 @@ func _run_command(command_array : PackedStringArray):
 	for command in commands:
 		if command.command == command_array[0].to_lower():
 			add_output(command.run_command(command_array,self))
+			possible_commands.clear()
 			return
 	
 	add_output(" Command not found : %s"%command_array[0])
 	command_edit.caret_column = -1
+	possible_commands.clear()
 
 func clear_console() -> void:
 	output_label.text = ""
 
+func set_font_size(font_size : int):
+	var font : Font = suggested_text.get_theme_font("string_name", "")
+	font.size = font_size
+	font = command_edit.get_theme_font("string_name", "")
+	font.size = font_size
+	font = output_label.get_theme_font("string_name", "")
+	font.size = font_size
 
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if event.button_mask == 1:
 			var delta : Vector2 = event.relative
-			size.y += delta.y
-			size.y = clamp(size.y,125,400)
+			main_panel.size.y += delta.y
+			main_panel.size.y = clamp(main_panel.size.y,125,400)
+
+func get_font_size() -> int:
+	#return command_edit.get_theme_font(0).get_string_size()
+	return 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3t48kyvnql5p"
-path="res://.godot/imported/Drag Handle.png-cfd2c0614febe0b4e0e1d49fcf1f8322.ctex"
+uid="uid://dk8fo8m4g1gyn"
+path="res://.godot/imported/scorch_03.png-556a3fd9d8244dd3a7a45298c6e0f181.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Kenny Icons/Drag Handle.png"
-dest_files=["res://.godot/imported/Drag Handle.png-cfd2c0614febe0b4e0e1d49fcf1f8322.ctex"]
+source_file="res://Sprites/Kenny Particles/scorch_03.png"
+dest_files=["res://.godot/imported/scorch_03.png-556a3fd9d8244dd3a7a45298c6e0f181.ctex"]
 
 [params]
 
