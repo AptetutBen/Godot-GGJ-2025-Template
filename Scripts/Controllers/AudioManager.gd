@@ -233,7 +233,7 @@ func set_sfx_volume(value : float):
 	SaveController.set_sfx_volume(value)
 	AudioServer.set_bus_volume_db(1,linear_to_db(value))
 
-func set_music_volume(value : float, doSave : bool = true):
+func set_music_volume(value : float):
 	SaveController.set_music_volume(value)
 	AudioServer.set_bus_volume_db(2,linear_to_db(value))
 	
