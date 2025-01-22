@@ -192,6 +192,7 @@ autowrap_mode = 0
 
 [node name="Options Buttons" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -384,7 +385,6 @@ texture = SubResource("AtlasTexture_0vewo")
 
 [node name="Credits" type="TextureRect" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -409,10 +409,26 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("2_0126h")
+theme_override_font_sizes/normal_font_size = 21
 bbcode_enabled = true
 text = "[center][b]Credits[/b][/center]
 
-Credits go here"
+Welcome to the Godot 4.3 template project made for the 2025 Global Game Jam.
+
+This template contains:
+- A splash screen
+- Main menu with menu system and options
+- Audio Manager
+- Save controller with game, settings and etherial saving
+- Pause menu
+- Loading screen
+- In game terminal for ease of debugging, commands new commands can be added easily
+- Dialogue system editor with example dialogue UI
+- Google sheets downloader for storing data on a google sheet
+
+This template is distributed under the CC BY-NC-SA licence.
+
+Contact me at ben@no-weekend.com."
 
 [node name="Close Button" type="Control" parent="Credits"]
 custom_minimum_size = Vector2(0, 65)
