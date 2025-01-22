@@ -25,5 +25,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action("UI Down"):
 		rich_text_label.get_v_scroll_bar().value += scroll_speed 
 	
-	if event.is_action_pressed("UI Cancel") || event.is_action_pressed("UI Left"):
+	if event.is_action_pressed("UI Cancel") || event.is_action_pressed("UI Left")  || event.is_action_pressed("UI Accept"):
+		await get_tree().process_frame
 		_on_close_press()
+		
