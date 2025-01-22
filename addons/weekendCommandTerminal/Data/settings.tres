@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TerminalSettings" load_steps=2 format=3 uid="uid://cmo5s5irvipm7"]
+[gd_resource type="Resource" script_class="TerminalSettings" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://addons/weekendCommandTerminal/Scripts/TerminalSettings.gd" id="1_ibm3t"]
 

@@ -11,6 +11,7 @@ extends Control
 
 @onready var music_volume: MenuTextRange = %"Music Volume"
 @onready var game_volume: MenuTextRange = %"Game Volume"
+@onready var sfx_volume: MenuTextRange = %"SFX Volume"
 
 
 func _ready():
@@ -56,6 +57,17 @@ func _on_master_volume_click() -> void:
 	
 	AudioManager.set_master_volume(current_volume)
 	game_volume.update_value(current_volume)
+
+func _on_sfx_volume_click() -> void:
+	var current_volume :float = AudioManager.get_sfx_volume()
+	current_volume = current_volume + 0.1
+	
+	if current_volume > 1:
+		current_volume = 0
+	
+	AudioManager.set_sfx_volume(current_volume)
+	sfx_volume.update_value(current_volume)
+	AudioManager.play_sfx("switch2")
 
 func _on_music_volume_click() -> void:
 	var current_volume :float = AudioManager.get_music_volume()
