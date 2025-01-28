@@ -188,7 +188,7 @@ func _build_footstep_audio_dic(path : String, key : String):
 	while filename != '':
 		
 		if filename.get_extension() == "import":
-			print(filename)
+			#print(filename)
 			filename = filename.left(len(filename) - len('.import'))
 			
 			if audioFormats.has(filename.get_extension().to_lower()):
@@ -207,9 +207,7 @@ func _get_audio_files(path,dic):
 			_get_audio_files(path + "/" + filename,dic)
 		
 		if filename.get_extension() == "import":
-			print(filename)
 			filename = filename.left(len(filename) - len('.import'))
-			print(filename)
 			if audioFormats.has(filename.get_extension().to_lower()):
 				var shortName = filename.left(len(filename) - (len(filename.get_extension() )+ 1))
 				dic[shortName] = ProjectSettings.globalize_path( path + "/" + filename)

@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="TerminalSettings" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="TerminalSettings" load_steps=2 format=3 uid="uid://difnrau5ai0yx"]
 
-[ext_resource type="Script" path="res://addons/weekendCommandTerminal/Scripts/TerminalSettings.gd" id="1_ibm3t"]
+[ext_resource type="Script" uid="uid://pt0g2dbkh8e2" path="res://addons/weekendCommandTerminal/Scripts/TerminalSettings.gd" id="1_ibm3t"]
 
 [resource]
 script = ExtResource("1_ibm3t")

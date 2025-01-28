@@ -47,7 +47,6 @@ func get_commands(path : String) -> void:
 	dir.list_dir_begin()
 	var filename = dir.get_next()
 	while filename != '':
-		print(filename)
 		if dir.current_is_dir():
 			get_commands(path + "/" + filename)
 		if filename.get_extension() == "gd":

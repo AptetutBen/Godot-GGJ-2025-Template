@@ -11,16 +11,20 @@ var is_currently_loading : bool
 
 var loading_scene : LoadingScreen
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	
+func _init() -> void:
+	print(" ---- o ---- ")
 	print("Project Name: " + ProjectSettings.get_setting("application/config/name"))
 	print("version: " + ProjectSettings.get_setting("application/config/version"))
 	print("Date: " + Time.get_date_string_from_system())
 	print("Time: " + Time.get_time_string_from_system())
 	print("In Editor: " + str(OS.has_feature("editor")))
 	print("Debug Build: " + str(OS.has_feature("debug")))
+	print("Platform: " + OS.get_name())
+	print(" ---- o ---- ")
 
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	
 	var root = get_tree().root
 	currentScene = root.get_child(root.get_child_count() - 1)
 	
@@ -66,12 +70,30 @@ func load_scene(scene_name , use_loading_screen : bool = false):
 	call_deferred("_deferred_goto_scene", scene_name,use_loading_screen)
 	
 func _deferred_goto_scene(scene_name, use_loading_screen):
-	
+
 	if !sceneDirectory.has(scene_name):
 		print("** Error ** Can't find scene: " + scene_name)
 		return
-	
+		
 	scene_to_load = sceneDirectory[scene_name]
+	
+	if OS.get_name() == "Web":
+		
+		if currentScene:
+			currentScene.queue_free()
+		# Use non-threaded loading for WebGL
+		var scene = ResourceLoader.load(scene_to_load)
+		if !scene:
+			printerr("Scene %s not loaded"% scene_to_load)
+		currentScene = scene.instantiate()
+			
+		# Add it to the active scene, as child of root.
+		get_tree().root.add_child(currentScene)
+
+		# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
+		get_tree().current_scene = currentScene
+		return
+	
 	is_currently_loading = true
 	var progress : Array[float]
 
@@ -80,6 +102,7 @@ func _deferred_goto_scene(scene_name, use_loading_screen):
 		loading_scene = prefab.instantiate() as LoadingScreen
 		add_child(loading_scene)
 		await loading_scene.activate()
+
 		currentScene.queue_free()
 	
 	# Load the new scene.
@@ -101,8 +124,6 @@ func _deferred_goto_scene(scene_name, use_loading_screen):
 				return
 		
 		await get_tree().process_frame
-	
-	print("Done")
 	
 	if loading_scene != null:
 		loading_scene.finish_loading_scene()
@@ -138,7 +159,6 @@ func dir_contents(path):
 				if file_name.get_extension().to_lower() == "tscn":
 					sceneDirectory[file_name.substr(0,file_name.length()-5)] = path + "/" + file_name
 				elif file_name.get_extension().to_lower() == "remap":
-				
 					sceneDirectory[file_name.substr(0,file_name.length()-len(".tscn.remap"))] = path + "/" + file_name.substr(0,file_name.length()-len(".remap"))
 			file_name = dir.get_next()
 	else:
