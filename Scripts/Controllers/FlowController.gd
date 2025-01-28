@@ -13,6 +13,14 @@ var loading_scene : LoadingScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	print("Project Name: " + ProjectSettings.get_setting("application/config/name"))
+	print("version: " + ProjectSettings.get_setting("application/config/version"))
+	print("Date: " + Time.get_date_string_from_system())
+	print("Time: " + Time.get_time_string_from_system())
+	print("In Editor: " + str(OS.has_feature("editor")))
+	print("Debug Build: " + str(OS.has_feature("debug")))
+
 	var root = get_tree().root
 	currentScene = root.get_child(root.get_child_count() - 1)
 	
@@ -129,6 +137,9 @@ func dir_contents(path):
 			else:
 				if file_name.get_extension().to_lower() == "tscn":
 					sceneDirectory[file_name.substr(0,file_name.length()-5)] = path + "/" + file_name
+				elif file_name.get_extension().to_lower() == "remap":
+				
+					sceneDirectory[file_name.substr(0,file_name.length()-len(".tscn.remap"))] = path + "/" + file_name.substr(0,file_name.length()-len(".remap"))
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")

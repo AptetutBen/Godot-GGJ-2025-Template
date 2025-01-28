@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxj16vfgvjgp8"]
 
 [ext_resource type="Theme" uid="uid://c7vaw5wq61pbh" path="res://Themes/UI.tres" id="1_4kf0n"]
-[ext_resource type="Script" path="res://Scripts/UI/MenuTextToggle.gd" id="2_qetp0"]
+[ext_resource type="Script" uid="uid://chars5jgkxrdx" path="res://Scripts/UI/MenuTextToggle.gd" id="2_qetp0"]
 [ext_resource type="Texture2D" uid="uid://r50oq5df1ugk" path="res://Sprites/UI/UI Panels.png" id="3_gcrwh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqsl1"]
@@ -20,6 +20,7 @@ grow_vertical = 2
 unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(0, 64.9)
+layout_mode = 0
 theme = ExtResource("1_4kf0n")
 bbcode_enabled = true
 text = "Vsync"

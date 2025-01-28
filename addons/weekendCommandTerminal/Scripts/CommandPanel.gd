@@ -47,10 +47,15 @@ func get_commands(path : String) -> void:
 	dir.list_dir_begin()
 	var filename = dir.get_next()
 	while filename != '':
+		print(filename)
 		if dir.current_is_dir():
 			get_commands(path + "/" + filename)
 		if filename.get_extension() == "gd":
 			var class_object = load(dir.get_current_dir() + "/" + filename)
+			if class_object and class_object.new() is ConsoleCommand:
+				commands.append(class_object.new())
+		if filename.get_extension() == "remap":
+			var class_object = load(dir.get_current_dir() + "/" + filename.substr(0,filename.length() - len(".remap")))
 			if class_object and class_object.new() is ConsoleCommand:
 				commands.append(class_object.new())
 		filename = dir.get_next()

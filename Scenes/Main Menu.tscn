@@ -1,13 +1,13 @@
 [gd_scene load_steps=15 format=3 uid="uid://di0ixdytwx1hv"]
 
-[ext_resource type="Script" path="res://Scripts/Main Menu/MainMenuController.gd" id="1_6svde"]
+[ext_resource type="Script" uid="uid://d1iet8fngqlty" path="res://Scripts/Main Menu/MainMenuController.gd" id="1_6svde"]
 [ext_resource type="Theme" uid="uid://c7vaw5wq61pbh" path="res://Themes/UI.tres" id="2_0126h"]
 [ext_resource type="Texture2D" uid="uid://r50oq5df1ugk" path="res://Sprites/UI/UI Panels.png" id="4_4lp62"]
-[ext_resource type="Script" path="res://Scripts/UI/TextButtonGroup.gd" id="4_88j2r"]
-[ext_resource type="Script" path="res://Scripts/UI/MenuText.gd" id="5_j2368"]
-[ext_resource type="Script" path="res://Scripts/UI/MenuTextRange.gd" id="6_8dboa"]
-[ext_resource type="Script" path="res://Scripts/UI/MenuTextToggle.gd" id="7_4lp62"]
-[ext_resource type="Script" path="res://Scripts/UI/CreditsPanel.gd" id="10_wib81"]
+[ext_resource type="Script" uid="uid://c0igtkxsnjsgj" path="res://Scripts/UI/TextButtonGroup.gd" id="4_88j2r"]
+[ext_resource type="Script" uid="uid://cqfqww5rcrh8n" path="res://Scripts/UI/MenuText.gd" id="5_j2368"]
+[ext_resource type="Script" uid="uid://uf3cadaffo2s" path="res://Scripts/UI/MenuTextRange.gd" id="6_8dboa"]
+[ext_resource type="Script" uid="uid://chars5jgkxrdx" path="res://Scripts/UI/MenuTextToggle.gd" id="7_4lp62"]
+[ext_resource type="Script" uid="uid://c1uaa211xtggr" path="res://Scripts/UI/CreditsPanel.gd" id="10_wib81"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0vewo"]
 atlas = ExtResource("4_4lp62")

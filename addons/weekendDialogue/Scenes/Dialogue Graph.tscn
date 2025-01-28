@@ -191,6 +191,37 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+connections = Array[Dictionary]([{
+"from_node": &"Dialogue Node_2",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"Set Variable Node_3",
+"to_port": 0
+}, {
+"from_node": &"Compare Variable Node_4",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"Dialogue Node_2",
+"to_port": 0
+}, {
+"from_node": &"Start Node_0",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"Compare Variable Node_4",
+"to_port": 0
+}, {
+"from_node": &"Compare Variable Node_4",
+"from_port": 1,
+"keep_alive": false,
+"to_node": &"Dialogue Node_5",
+"to_port": 0
+}, {
+"from_node": &"Start Node_1",
+"from_port": 0,
+"keep_alive": false,
+"to_node": &"Dialogue Node_2",
+"to_port": 0
+}])
 
 [node name="Text Editor" parent="VBoxContainer/Main Panel/Dialogue Editor" instance=ExtResource("7_uu681")]
 unique_name_in_owner = true
@@ -220,6 +251,7 @@ size = Vector2i(190, 143)
 hide_on_state_item_selection = true
 item_count = 5
 item_0/text = "Start"
+item_0/id = 0
 item_1/text = "Conversation"
 item_1/id = 1
 item_2/text = "Get Variable"
@@ -236,6 +268,7 @@ size = Vector2i(100, 35)
 hide_on_state_item_selection = true
 item_count = 1
 item_0/text = "Delete"
+item_0/id = 0
 script = ExtResource("8_uu681")
 
 [connection signal="pressed" from="VBoxContainer/Header/Add Node" to="." method="_on_add_node_pressed"]

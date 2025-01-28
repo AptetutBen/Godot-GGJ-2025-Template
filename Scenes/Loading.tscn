@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cx8r3mx8dhwju"]
 
-[ext_resource type="Script" path="res://Scripts/Controllers/LoadingScreen.gd" id="1_0s034"]
+[ext_resource type="Script" uid="uid://bga2oxiyrxfg1" path="res://Scripts/Controllers/LoadingScreen.gd" id="1_0s034"]
 [ext_resource type="Theme" uid="uid://c7vaw5wq61pbh" path="res://Themes/UI.tres" id="2_hh1c8"]
-[ext_resource type="Shader" path="res://Shaders/waves.gdshader" id="2_skybv"]
+[ext_resource type="Shader" uid="uid://db6qfcbafh2bc" path="res://Shaders/waves.gdshader" id="2_skybv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smb0f"]
 shader = ExtResource("2_skybv")
