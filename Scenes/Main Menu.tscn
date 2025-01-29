@@ -467,7 +467,7 @@ theme_override_font_sizes/normal_font_size = 21
 bbcode_enabled = true
 text = "[center][b]Credits[/b][/center]
 
-Welcome to the Godot 4.3 template project made for the 2025 Global Game Jam.
+Welcome to the Godot 4.4 template project made for the 2025 Global Game Jam.
 
 This template contains:
 - A splash screen

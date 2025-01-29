@@ -38,6 +38,12 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/script-ide/plugin.cfg", "res://addons/weekendDialogue/plugin.cfg", "res://addons/weekendSpreadsheets/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Scenes/": "teal"
+}
+
 [filesystem]
 
 import/blender/enabled=false
