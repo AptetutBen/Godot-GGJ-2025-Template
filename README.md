@@ -18,6 +18,7 @@ This is a Godot 4.4 template project designed to kickstart your game development
    - Play, stop, and manage sound effects and music.
    - Scans for all audio in the 'Audio' folder and stores it in a dictionary so you only need the name of the file to play it
    - Adjust volume for different audio channels.
+   - Plays footstep audio
    - Saves volume levels
    - Example usage:
      ```gdscript
@@ -41,43 +42,31 @@ This is a Godot 4.4 template project designed to kickstart your game development
    - Supports multiple save slots.
    - Example usage:
      ```gdscript
-     SaveSystem.save_game("slot1", data)
-     var loaded_data = SaveSystem.load_game("slot1")
-     ```
+     SaveController.set_value("key","value")
+     SaveController.get_value("key","default value")
+     SaveController.set_value_bool("key",true)
+     SaveController.get_value_bool("key",true)
+     SaveController.set_value_float("key",5.4)
+     SaveController.get_value_float("key",1.5)
+     SaveController.set_value_int("key",2)
+     SaveController.get_value_int("key",1)
 
-### 4. **Custom Terminal**
-   - Debug and interact with the game using a built-in terminal.
-   - Execute commands and view logs in real-time.
-   - Example usage:
-     ```gdscript
-     Terminal.execute_command("set_health 100")
+     SaveController.set_etheral_value("key","value")
+     SaveController.get_etheral_value("key","default value")
+     SaveController.set_etheral_value_bool("key",true)
+     SaveController.get_etheral_value_bool("key",true)
+     SaveController.set_etheral_value_float("key",5.4)
+     SaveController.get_etheral_value_float("key",1.5)
+     SaveController.set_etheral_value_int("key",2)
+     SaveController.get_etheral_value_int("key",1)
      ```
 
 ### 5. **Loading Scene**
-   - Smooth transitions between scenes with a progress bar.
-   - Example usage:
-     ```gdscript
-     FlowController.load_scene_with_loading_screen("res://scenes/level_2.tscn")
-     ```
-
-### 6. **Main Menu**
-   - A fully functional main menu with options to start, load, and quit the game.
-   - Example usage:
-     ```gdscript
-     MainMenu.show()
-     ```
+   - A customizable loading screen
+   - When a scene is loaded with a 'Use Loading Screen' argument is provided (default) this scene will show.
+   - This scene can be updated whoever you wish
 
 ### 7. **Splash Screen**
    - A customizable splash screen to display your game's logo or branding.
-   - Example usage:
-     ```gdscript
-     SplashScreen.show_logo("res://assets/logo.png", 3.0)
-     ```
+   - This scene can be updated whoever you wish
 
----
-
-## Installation
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/godot-4.2-template.git
