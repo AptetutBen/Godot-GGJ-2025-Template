@@ -39,7 +39,9 @@ This is a Godot 4.4 template project designed to kickstart your game development
 
 ### 3. **Save System**
    - Save and load game data to/from a file.
-   - Supports multiple save slots.
+   - Supports etheral data that does not get saved and clears when the game is quit
+   - Supports saving, Strings, Floats, Ints and Bools
+   - Also saves Game Settings in a seperate file such as volume, screen size, fullscreen, vsync  
    - Example usage:
      ```gdscript
      SaveController.set_value("key","value")
