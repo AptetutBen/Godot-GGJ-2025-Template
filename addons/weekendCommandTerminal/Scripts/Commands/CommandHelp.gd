@@ -6,7 +6,7 @@ func get_command() -> String:
 func get_help() -> String:
 	return "Provides help for any command \n :help [command]"
 
-func run_command(strings : PackedStringArray, panel : CommandPanel) -> String:
+func run_command(strings : PackedStringArray, panel) -> String:
 	if strings.size() == 2:
 		var command_needing_help : ConsoleCommand = panel.get_command(strings[1])
 		if command_needing_help == null:

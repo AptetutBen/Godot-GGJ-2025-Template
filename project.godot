@@ -22,6 +22,7 @@ FlowController="*res://Scripts/Controllers/FlowController.gd"
 SaveController="*res://Scripts/Controllers/SaveController.gd"
 EventBus="*res://Scripts/Controllers/EventBus.gd"
 AudioManager="*res://Scripts/Controllers/AudioManager.gd"
+WeekendTerminal="*res://addons/weekendCommandTerminal/weekendTerminal.gd"
 
 [debug]
 

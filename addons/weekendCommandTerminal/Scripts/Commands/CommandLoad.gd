@@ -6,7 +6,7 @@ func get_command() -> String:
 func get_help() -> String:
 	return "Loads a scene \n 'load [scene name]' - Loads the given scene\n'load available' - Get a list of available scenes \n 'load reload' - Reloads the current scene"
 
-func run_command(strings : PackedStringArray, panel : CommandPanel) -> String:
+func run_command(strings : PackedStringArray, panel) -> String:
 	if strings.size()>2:
 		var string_start = strings[0]
 		strings.remove_at(0)

@@ -6,7 +6,7 @@ func get_command() -> String:
 func get_help() -> String:
 	return "Sets the terminal font size \n 'fontsize' - returns the current font size \n 'fontsize [10]' - sets the font size to value (5-30) \n 'fontsize reset' - sets the font size default (12)"
 
-func run_command(strings : PackedStringArray, panel : CommandPanel) -> String:
+func run_command(strings : PackedStringArray, panel) -> String:
 	if strings.size() == 1:
 		return "Current font size: %s"%str(panel.get_current_font_size())
 	elif strings.size() != 2:

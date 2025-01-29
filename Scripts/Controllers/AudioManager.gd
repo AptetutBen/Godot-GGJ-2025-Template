@@ -38,10 +38,11 @@ func _init():
 	AudioServer.set_bus_volume_db(2,linear_to_db(SaveController.get_music_volume()))
 	
 	
-# Add a new bus to the Audio Server
+# Adds a new bus to the Audio Server with the specified name.
+# The bus is added at the first available index.
 func _add_bus(bus_name : String):
 	AudioServer.add_bus(1)
-	AudioServer.set_bus_name(1,bus_name)
+	AudioServer.set_bus_name(1, bus_name)
 
 func play_sfx_fade(clip_name : String, play_from_random_point : bool = false, fade_in_duration : float = 3, play_duration : float= 5, fade_out_duration : float = 10) -> AudioStreamPlayer2D:
 	var player = play_sfx(clip_name)
@@ -62,6 +63,7 @@ func play_sfx_fade(clip_name : String, play_from_random_point : bool = false, fa
 	
 	return player
 
+# Play a sfx with a fade in, play and fade out duration in seconds
 func play_sfx(clip_name : String,volume : float = 1, pitch : float = 1) -> AudioStreamPlayer2D:
 	if volume <= 0.1:
 		return
@@ -85,9 +87,18 @@ func play_footstep_sound(texure_index : int, volume : float):
 		return
 	_play_2d_audio(ResourceLoader.load(footstep_clips[footstep_keys[texure_index]].pick_random()),volume,randf_range(0.6,1.4))
 
-func _play_3d_audio(clip : AudioStream, position: Vector3, pitch : float = 1) -> AudioStreamPlayer3D:
+func play_sfx_at_position(clip_name : String, position: Vector3,volume : float = 1, pitch : float = 1) -> AudioStreamPlayer3D:
+	if volume <= 0.1:
+		return
+	if !sfx_clips.has(clip_name):
+		print("*** Audio File: %s not found." %clip_name )
+		return
+	var clip = ResourceLoader.load(sfx_clips[clip_name])
+	return _play_3d_audio(clip,position,volume,pitch)
+
+func _play_3d_audio(clip : AudioStream, position: Vector3,volume : float = 1, pitch : float = 1) -> AudioStreamPlayer3D:
 	var player : AudioStreamPlayer3D = audioStreamPlayers3D[audioStreamPointer3D]
-	player.volume_db = 0
+	player.volume_db = linear_to_db(volume)
 	player.pitch_scale = pitch
 	audioStreamPointer3D = (audioStreamPointer3D+1)%audioStreamPlayers3D.size()
 	player.global_position = position

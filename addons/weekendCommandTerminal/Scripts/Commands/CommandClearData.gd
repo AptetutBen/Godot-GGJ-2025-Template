@@ -6,7 +6,7 @@ func get_command() -> String:
 func get_help() -> String:
 	return "Clears saved data \n 'cleardata data' - clears saved data\n 'cleardata all' - clears all saved data \n 'cleardata ethereal' - clears all ethereal saved data "
 
-func run_command(strings : PackedStringArray, panel : CommandPanel) -> String:
+func run_command(strings : PackedStringArray, panel) -> String:
 	if strings.size() != 2:
 		return default_error()
 	else:

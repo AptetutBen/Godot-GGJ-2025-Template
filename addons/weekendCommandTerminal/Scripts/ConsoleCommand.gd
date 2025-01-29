@@ -14,5 +14,5 @@ func get_command() -> String:
 func get_help() -> String:
 	return ""
 
-func run_command(_strings : PackedStringArray, _panel : CommandPanel) -> String:
+func run_command(_strings : PackedStringArray, _panel) -> String:
 	return ""

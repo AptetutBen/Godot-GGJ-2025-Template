@@ -6,7 +6,7 @@ func get_command() -> String:
 func get_help() -> String:
 	return "Sets the game Audio \n'audio mute' - Mutes the master audio\n'audio music [0 - 100]' - Sets the music audio\n'audio sfx [0 - 100]' - Sets the sfx audio\n'audio master [0 - 100]' - Sets the sfx audio"
 
-func run_command(strings : PackedStringArray, panel : CommandPanel) -> String:
+func run_command(strings : PackedStringArray, panel) -> String:
 	
 	if strings.size() == 3:
 		

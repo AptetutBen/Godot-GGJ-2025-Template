@@ -6,7 +6,7 @@ func get_command() -> String:
 func get_help() -> String:
 	return "Quits the game \n 'quit'"
 
-func run_command(strings : PackedStringArray, panel : CommandPanel) -> String:
+func run_command(strings : PackedStringArray, panel) -> String:
 	if strings.size() != 1:
 		return default_error()
 	else:
