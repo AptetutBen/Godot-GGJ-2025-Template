@@ -30,7 +30,7 @@ var previous_command_index : int = 0
 
 func _ready() -> void:
 	hide()
-	set_font_size(settings.font_size)
+	change_font_size(settings.font_size)
 	output_label.text = " - weekend Terminal - \n "
 	command_edit.text_submitted.connect(_on_text_submitted)
 	command_edit.text_changed.connect(_on_text_changed)
@@ -213,14 +213,18 @@ func set_font_size(font_size : int):
 	if font_size < min_font_size || font_size > max_font_size:
 		add_output("Font size '%s' must be between %s and %s"%[font_size,min_font_size,max_font_size])
 		return
+		
+	change_font_size(font_size)
+
+	add_output("Font size changed to %s"%font_size)
+	settings.font_size = font_size
+	ResourceSaver.save(settings)
+
+func change_font_size(font_size : int) -> void:
 	suggested_text.add_theme_font_size_override("font_size", font_size)
 	command_edit.add_theme_font_size_override("font_size", font_size)
 	output_label.add_theme_font_size_override("font_size", font_size)
 	beginning_label.add_theme_font_size_override("font_size", font_size)
-	
-	add_output("Font size changed to %s"%font_size)
-	settings.font_size = font_size
-	ResourceSaver.save(settings)
 
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

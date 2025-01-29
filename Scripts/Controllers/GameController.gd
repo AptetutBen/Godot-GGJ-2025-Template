@@ -12,9 +12,9 @@ func _ready() -> void:
 	Instance = self
 	
 	# Always turn off debug when game is built 
-	if !OS.has_feature("editor"):
+	if !OS.has_feature("debug"):
 		_use_debug = false
 	
 	# play the background music,
-	if _use_debug && !_debug_mute_music:
+	if !_use_debug || !_debug_mute_music:
 		AudioManager.play_music("Game Music")
