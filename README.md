@@ -41,7 +41,8 @@ This is a Godot 4.4 template project designed to kickstart your game development
    - Save and load game data to/from a file.
    - Supports etheral data that does not get saved and clears when the game is quit
    - Supports saving, Strings, Floats, Ints and Bools
-   - Also saves Game Settings in a seperate file such as volume, screen size, fullscreen, vsync  
+   - Also saves Game Settings in a seperate file such as volume, screen size, fullscreen, vsync
+   - Getting saved variables can be provided a default value that will be returned if the value isn't set 
    - Example usage:
      ```gdscript
      SaveController.set_value("key","value")
