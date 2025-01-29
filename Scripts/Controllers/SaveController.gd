@@ -5,6 +5,8 @@ const gameSettingFileName : String = "game_setting.save"
 
 var resizeTimer : Timer
 
+var current_save_slot : int = 0
+
 # Current stored values
 var variable_dictionary = {}
 var ethereal_dictionary = {}
@@ -171,20 +173,31 @@ func _on_view_port_resize_timer_timeout():
 
 # Save data from save file
 func save_data():
+	variable_dictionary["game_version"] = ProjectSettings.get_setting("application/config/version")
+	variable_dictionary["date_time"]= Time.get_unix_time_from_system()
 	var json_string = JSON.stringify(variable_dictionary)
-	var save_file = FileAccess.open("user://%s"%[gameSaveFileName], FileAccess.WRITE)
+	var save_file = FileAccess.open("user://%s_%s"%[gameSaveFileName,current_save_slot], FileAccess.WRITE)
 	save_file.store_line(json_string)
 	save_file.close()
 
 # Load data from save file
 func _load_data():
-	var save_file : FileAccess = FileAccess.open("user://%s"%[gameSaveFileName], FileAccess.READ)
+	var save_file : FileAccess = FileAccess.open("user://%s_%s"%[gameSaveFileName,current_save_slot], FileAccess.READ)
 	
 	if save_file == null:
 		variable_dictionary = {}
 		return
 
 	variable_dictionary = JSON.parse_string(save_file.get_as_text())
+	
+		# Check if save version is for the current date of the game
+	if variable_dictionary["game_version"] !=ProjectSettings.get_setting("application/config/version"):
+		print("Save file is for a previous version of the game, will ugrade")
+		_save_file_upgrader(game_settings_save_data["game_version"])
+
+func has_save_file(save_slot : int):
+	var save_file : FileAccess = FileAccess.open("user://%s_%s"%[gameSaveFileName,save_slot], FileAccess.READ)
+	return save_file != null
 
 # Load data from save file
 func _load_settings_data():
@@ -196,8 +209,28 @@ func _load_settings_data():
 
 	game_settings_save_data = JSON.parse_string(save_file.get_as_text())
 
+
 func _save_settings_data():
 	var json_string = JSON.stringify(game_settings_save_data)
 	var save_file = FileAccess.open("user://" + gameSettingFileName, FileAccess.WRITE)
 	save_file.store_line(json_string)
 	save_file.close()
+
+func _save_file_upgrader(version : String):
+	match version:
+		"0.1":
+			#change all the settings needed from 0.1 to the next version of the save file
+			print("Upgrading from v0.1 to v0.2")
+			_save_file_upgrader("0.2")
+			return
+		"0.2":
+			#change all the settings needed from 0.2 to the next version of the save file
+			print("Upgrading from v0.1 to v0.2")
+			_save_file_upgrader("0.3")
+			return
+	
+	print("Saving data againt to new updated version")
+	save_data()
+	
+	
+	
