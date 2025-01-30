@@ -150,3 +150,19 @@ AudioManager.set_music_volume(0.6)
    - A customizable splash screen to display your game's logo or branding.
    - This scene can be updated whoever you wish
 
+### 6. **Debug Terminal**
+   - A Terminal that loads over the whole game to allow for custom commands to be entered.
+
+Default button is **'~'** to hide and show the terminal
+
+To add your own commands, duplicate the **CommandExample.gd** script and enter your own command details, this command will automatically get picked up when the game starts.
+
+current commands
+-- **help** - shows a list of commands
+-- **clr** - clears the terminal
+-- **clear-data** - clears the save data
+-- **font-size** - sets the consoles font size
+-- **fullscreen** - toggles the game to fullscreen
+-- **load** - loads a level
+-- **quit** -- quits the game
+
