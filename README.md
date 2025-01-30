@@ -66,8 +66,13 @@ gdscript
 AudioManager.play_sfx("explosion", volume=0.8)
 ```
 2. Music with Fade Transition
+
+When a request to play a song is made, any current song playing will be faded out over 1 second (by default)
 ```
 gdscript
+
+# Start playing music 
+AudioManager.play_music("menu_theme")
 
 # Start music with 2-second fade-in
 AudioManager.play_music("main_theme", fade_duration=2.0)
@@ -136,12 +141,12 @@ AudioManager.set_music_volume(0.6)
      SaveController.get_etheral_value_int("key",1)
      ```
 
-### 5. **Loading Scene**
+### 4. **Loading Scene**
    - A customizable loading screen
    - When a scene is loaded with a 'Use Loading Screen' argument is provided (default) this scene will show.
    - This scene can be updated whoever you wish
 
-### 7. **Splash Screen**
+### 5. **Splash Screen**
    - A customizable splash screen to display your game's logo or branding.
    - This scene can be updated whoever you wish
 
