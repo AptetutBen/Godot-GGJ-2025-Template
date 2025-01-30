@@ -120,6 +120,7 @@ func show_with_tween() -> void:
 	show()
 	main_panel.position.y = -main_panel.size.y
 	show_hide_tween = get_tree().create_tween()
+	show_hide_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	show_hide_tween.tween_property(main_panel,"position:y",0,0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	show_hide_tween.tween_callback(func(): show_hide_tween = null)
 	
@@ -128,6 +129,7 @@ func hide_with_tween() -> void:
 		show_hide_tween.stop()
 	
 	show_hide_tween = get_tree().create_tween()
+	show_hide_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	show_hide_tween.tween_property(main_panel,"position:y",-main_panel.size.y,0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	show_hide_tween.tween_callback(func(): hide())
 	show_hide_tween.tween_callback(func(): show_hide_tween = null)

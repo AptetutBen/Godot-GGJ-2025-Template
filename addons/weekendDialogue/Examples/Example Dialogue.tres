@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="DialogueData" load_steps=16 format=3 uid="uid://crtmtk8jti3gq"]
 
-[ext_resource type="Script" uid="uid://dft5ylk4m7qpc" path="res://addons/weekendDialogue/Scripts/DialogueNodeData.gd" id="1_cr8kl"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/DialogueNodeData.gd" id="1_cr8kl"]
 [ext_resource type="Resource" uid="uid://kp6jcp55lm1g" path="res://addons/weekendDialogue/Examples/Example Characters.tres" id="1_dc20o"]
-[ext_resource type="Script" uid="uid://uv5we0y0dofd" path="res://addons/weekendDialogue/Scripts/DialogueStartNodeData.gd" id="2_oucrf"]
-[ext_resource type="Script" uid="uid://rxyur4vwo6q0" path="res://addons/weekendDialogue/Scripts/DialogueData.gd" id="2_vlfbc"]
-[ext_resource type="Script" uid="uid://sqg6wt1txbp5" path="res://addons/weekendDialogue/Scripts/DialogueOption.gd" id="3_fm80j"]
-[ext_resource type="Script" uid="uid://mtq6i61w1mhi" path="res://addons/weekendDialogue/Scripts/DialogueConversationNodeData.gd" id="4_8mehq"]
-[ext_resource type="Script" uid="uid://cb3i1ff7gerip" path="res://addons/weekendDialogue/Scripts/DialogueSetVariableNodeData.gd" id="5_t0jf0"]
-[ext_resource type="Script" uid="uid://bsphg330vd3cx" path="res://addons/weekendDialogue/Scripts/DialogueCompareVariableNodeData.gd" id="7_4yv5g"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/DialogueStartNodeData.gd" id="2_oucrf"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/DialogueData.gd" id="2_vlfbc"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/DialogueOption.gd" id="3_fm80j"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/DialogueConversationNodeData.gd" id="4_8mehq"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/DialogueSetVariableNodeData.gd" id="5_t0jf0"]
+[ext_resource type="Script" path="res://addons/weekendDialogue/Scripts/DialogueCompareVariableNodeData.gd" id="7_4yv5g"]
 
 [sub_resource type="Resource" id="Resource_tlxkr"]
 script = ExtResource("3_fm80j")

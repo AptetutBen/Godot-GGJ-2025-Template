@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8wg4cuwctt0r"]
 
-[ext_resource type="Script" uid="uid://cp1nwrstgnbkm" path="res://addons/weekendCommandTerminal/Scripts/CommandPanel.gd" id="1_65041"]
+[ext_resource type="Script" uid="uid://cp1nwrstgnbkm" path="res://addons/weekendCommandTerminal/Scripts/TerminalPanel.gd" id="1_65041"]
 [ext_resource type="Shader" uid="uid://nyj3fp27uhe5" path="res://addons/weekendCommandTerminal/Shaders/blur.gdshader" id="2_8k2bl"]
 [ext_resource type="FontFile" uid="uid://jbwcecxwdgqu" path="res://Fonts/RobotoMono.ttf" id="2_w15k2"]
 [ext_resource type="Theme" uid="uid://ddngojvg5rlkb" path="res://Themes/CommandWindow.tres" id="3_bkk3c"]
