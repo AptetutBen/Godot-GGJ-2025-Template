@@ -18,10 +18,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-FlowController="*res://Scripts/Controllers/FlowController.gd"
-SaveController="*res://Scripts/Controllers/SaveController.gd"
+FlowController="*res://addons/weekendFlowController/FlowController.gd"
+SaveController="*res://addons/weekendSaveController/SaveController.gd"
 EventBus="*res://Scripts/Controllers/EventBus.gd"
-AudioManager="*res://Scripts/Controllers/AudioManager.gd"
+AudioManager="*res://addons/weekendAudioManager/AudioManager.gd"
 WeekendTerminal="*res://addons/weekendCommandTerminal/weekendTerminal.gd"
 
 [debug]

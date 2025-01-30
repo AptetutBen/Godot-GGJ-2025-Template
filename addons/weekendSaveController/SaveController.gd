@@ -1,7 +1,8 @@
 extends Node
 
-const gameSaveFileName : String = "game_data.save"
-const gameSettingFileName : String = "game_setting.save"
+const saveExtention : String = ".save"
+const gameSaveFileName : String = "game_data"
+const gameSettingFileName : String = "game_setting"
 
 var resizeTimer : Timer
 
@@ -11,9 +12,10 @@ var current_save_slot : int = 0
 var variable_dictionary = {}
 var ethereal_dictionary = {}
 
+var play_start : float
+
 # Init
 func _init():
-	_load_data()
 	_load_settings_data()
 	
 func _ready() -> void:
@@ -25,6 +27,21 @@ func reset_save_data() -> void:
 	
 func clear_etheral_data() -> void:
 	ethereal_dictionary.clear()
+
+func load_data(save_slot : int = 0) -> void:
+	current_save_slot = save_slot
+	play_start = Time.get_unix_time_from_system()
+	_load_data()
+
+func clear_save_slot(slot_number : int) -> void:
+	var dir_access = DirAccess.open("user://")
+	
+	if dir_access.file_exists("%s_%s%s"%[gameSaveFileName,slot_number,saveExtention]):
+		dir_access.remove("%s_%s%s"%[gameSaveFileName,slot_number,saveExtention])
+	
+	# if we are clearning the current save slot, then also clear the variable dictionary
+	if slot_number == current_save_slot:
+		variable_dictionary = {}
 
 # Save Data
 
@@ -173,35 +190,47 @@ func _on_view_port_resize_timer_timeout():
 
 # Save data from save file
 func save_data():
-	variable_dictionary["game_version"] = ProjectSettings.get_setting("application/config/version")
-	variable_dictionary["date_time"]= Time.get_unix_time_from_system()
+	variable_dictionary["play_length"] = get_value_float("play_length",0) + (Time.get_unix_time_from_system() - play_start)
+	play_start = Time.get_unix_time_from_system()
 	var json_string = JSON.stringify(variable_dictionary)
-	var save_file = FileAccess.open("user://%s_%s"%[gameSaveFileName,current_save_slot], FileAccess.WRITE)
+	var save_file = FileAccess.open("user://%s_%s%s"%[gameSaveFileName,current_save_slot,saveExtention], FileAccess.WRITE)
 	save_file.store_line(json_string)
 	save_file.close()
 
+func create_new_save_data(slot_number : int = 0, save_name : String = "", do_save : bool = false):
+	current_save_slot = slot_number
+	
+	variable_dictionary = {}
+	variable_dictionary["save_name"] = save_name
+	variable_dictionary["game_version"] = ProjectSettings.get_setting("application/config/version")
+	variable_dictionary["date_time_created"]= Time.get_unix_time_from_system()
+	variable_dictionary["play_length"] = 0
+	
+	if do_save:
+		save_data()
+
 # Load data from save file
 func _load_data():
-	var save_file : FileAccess = FileAccess.open("user://%s_%s"%[gameSaveFileName,current_save_slot], FileAccess.READ)
+	var save_file : FileAccess = FileAccess.open("user://%s_%s%s"%[gameSaveFileName,current_save_slot,saveExtention], FileAccess.READ)
 	
 	if save_file == null:
-		variable_dictionary = {}
+		create_new_save_data(current_save_slot)
 		return
-
+		
 	variable_dictionary = JSON.parse_string(save_file.get_as_text())
 	
 		# Check if save version is for the current date of the game
 	if variable_dictionary["game_version"] !=ProjectSettings.get_setting("application/config/version"):
-		print("Save file is for a previous version of the game, will ugrade")
+		print("Save file is for a previous version of the game, will upgrade")
 		_save_file_upgrader(game_settings_save_data["game_version"])
 
 func has_save_file(save_slot : int):
-	var save_file : FileAccess = FileAccess.open("user://%s_%s"%[gameSaveFileName,save_slot], FileAccess.READ)
+	var save_file : FileAccess = FileAccess.open("user://%s_%s%s"%[gameSaveFileName,save_slot,saveExtention], FileAccess.READ)
 	return save_file != null
 
 # Load data from save file
 func _load_settings_data():
-	var save_file : FileAccess = FileAccess.open("user://" + gameSettingFileName, FileAccess.READ)
+	var save_file : FileAccess = FileAccess.open("user://%s%s"%[gameSettingFileName,saveExtention], FileAccess.READ)
 	
 	if save_file == null:
 		_save_settings_data();
@@ -212,7 +241,7 @@ func _load_settings_data():
 
 func _save_settings_data():
 	var json_string = JSON.stringify(game_settings_save_data)
-	var save_file = FileAccess.open("user://" + gameSettingFileName, FileAccess.WRITE)
+	var save_file = FileAccess.open("user://%s%s"%[gameSettingFileName,saveExtention], FileAccess.WRITE)
 	save_file.store_line(json_string)
 	save_file.close()
 

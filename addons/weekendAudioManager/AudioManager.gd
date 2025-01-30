@@ -36,8 +36,8 @@ func _init():
 	AudioServer.set_bus_volume_db(0,linear_to_db(SaveController.get_master_volume()))
 	AudioServer.set_bus_volume_db(1,linear_to_db(SaveController.get_sfx_volume()))
 	AudioServer.set_bus_volume_db(2,linear_to_db(SaveController.get_music_volume()))
-	
-	
+
+
 # Adds a new bus to the Audio Server with the specified name.
 # The bus is added at the first available index.
 func _add_bus(bus_name : String):
