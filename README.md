@@ -32,18 +32,17 @@ Auto File Scanning - Organizes SFX/Music/Footsteps
 
 3D Audio - Positional sound effects
 
-Installation 📦
-Add audio_manager.gd to your project
+Place any audio files in the **Audio** folder.
 
-Set as Autoload:
+    Supported formats: .wav, .mp3, .ogg
 
-Go to Project > Project Settings > Autoload
+Sound effects in the **SFX** folder (sub folders supported)
+Music in the **Music** folder
+And Footsteps in the **Footsteps** sub folders
+- Each sub folder can hold a number of sound effects that will be chosen at random when requesting an audio clip to be played.
+- More material folders can be added and adjusted in the code
 
-Set path to script and name it AudioManager
-
-Create folder structure:
-
-Copy
+```
 Audio/  
 ├── SFX/  
 ├── Music/  
@@ -52,66 +51,53 @@ Audio/
     ├── Grass/  
     ├── Rock/  
     ├── Sand/  
-    └── Water/  
+    └── Water/
+```
     
 Tutorials 🎓
 1. Basic SFX Playback
-gdscript
-Copy
+
+explosion.wav → Use as "explosion"
+forest_theme.mp3 → Use as "forest_theme"
+
 # Play explosion sound at 80% volume
-AudioManager.play_sfx("explosion", volume=0.8)
-2. Music with Fade Transition
+```
 gdscript
-Copy
+AudioManager.play_sfx("explosion", volume=0.8)
+```
+2. Music with Fade Transition
+```
+gdscript
+
 # Start music with 2-second fade-in
 AudioManager.play_music("main_theme", fade_duration=2.0)
 
 # Fade out current music over 1.5 seconds
 AudioManager.fade_current_song()
+```
 3. 3D Positional Audio
+```
 gdscript
-Copy
 # Play laser sound at (5,0,10) in 3D space
 AudioManager.play_sfx_at_position("laser", Vector3(5, 0, 10))
+```
+
 4. Footstep System
+```
 gdscript
 Copy
 # Play grass footstep (index 2) at 50% volume
 AudioManager.play_footstep_sound(2, 0.5)
-Terrain Indices:
+```
 
-gdscript
-Copy
--1: Water  
-0: Sand  
-1: Rock  
-2: Grass  
-3: Dirt  
-5. Volume Control
-gdscript
-Copy
+5. Adjust volume levels
+```
 # Set volumes (0.0-1.0 range)
 AudioManager.set_master_volume(0.8)
 AudioManager.set_sfx_volume(0.7)
 AudioManager.set_music_volume(0.6)
-Configuration ⚙️
-Adjust pool sizes in _init():
+```
 
-gdscript
-Copy
-_create_2DaudioSources(2)   # 2D SFX channels  
-_create_3DaudioSources(5)   # 3D SFX channels  
-_create_musicAudioSources(2) # Music channels
-File Requirements
-Supported formats: .wav, .mp3, .ogg
-
-Naming Convention:
-
-explosion.wav → Use as "explosion"
-
-forest_theme.mp3 → Use as "forest_theme"
-
-This is raw markdown text - paste it directly into a README.md file. Let me know if you need adjustments!
 
 ### 2. **Flow Controller**
    - Handle scene transitions and game flow.
